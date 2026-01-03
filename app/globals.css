@@ -20,7 +20,7 @@
 	--color-border: #e5e5e5;
 
 	/* === TYPOGRAPHY - Reference Next.js font variables === */
-	--font-sans: var(--font-geist-sans), "Helvetica Neue", Helvetica, Arial, sans-serif;
+	--font-montserrat: var(--font-montserrat), "Montserrat", sans-serif;
 	--font-amharic: var(--font-amharic), "Noto Sans Ethiopic", sans-serif;
 }
 
@@ -80,6 +80,7 @@ html {
 }
 
 body {
+	font-family: var(--font-montserrat), "Montserrat", sans-serif;
 	background-color: var(--color-background);
 	color: var(--color-foreground);
 	-webkit-font-smoothing: antialiased;
