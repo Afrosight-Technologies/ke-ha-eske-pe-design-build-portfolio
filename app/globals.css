@@ -22,34 +22,56 @@
 	/* === TYPOGRAPHY - Reference Next.js font variables === */
 	--font-sans: var(--font-geist-sans), "Helvetica Neue", Helvetica, Arial, sans-serif;
 	--font-amharic: var(--font-amharic), "Noto Sans Ethiopic", sans-serif;
-
-	/* === GRID SIZES === */
-	--grid-size-sm: 20px;
-	--grid-size-md: 24px;
-	--grid-size-lg: 40px;
 }
 
 /* ===== GRID BACKGROUND UTILITIES ===== */
 
-/* 
- * Functional grid utilities using Tailwind v4's --value() function
- * Supports: bg-grid-sm, bg-grid-md, bg-grid-lg, bg-grid-[32px]
- */
-
-/* Grid for light backgrounds (dark lines) */
-@utility bg-grid-* {
+/* Base grid utility - works on light backgrounds (24px) */
+@utility bg-grid {
 	background-image:
 		linear-gradient(to right, #80808012 1px, transparent 1px),
 		linear-gradient(to bottom, #80808012 1px, transparent 1px);
-	background-size: --value(--grid-size-*, [length]) --value(--grid-size-*, [length]);
+	background-size: 24px 24px;
 }
 
-/* Grid for dark backgrounds (white/light lines) */
-@utility bg-grid-light-* {
+/* Small grid (20px) */
+@utility bg-grid-sm {
+	background-image:
+		linear-gradient(to right, #80808012 1px, transparent 1px),
+		linear-gradient(to bottom, #80808012 1px, transparent 1px);
+	background-size: 20px 20px;
+}
+
+/* Large grid (40px) */
+@utility bg-grid-lg {
+	background-image:
+		linear-gradient(to right, #80808012 1px, transparent 1px),
+		linear-gradient(to bottom, #80808012 1px, transparent 1px);
+	background-size: 40px 40px;
+}
+
+/* Grid for dark backgrounds (white lines) */
+@utility bg-grid-light {
 	background-image:
 		linear-gradient(to right, #ffffff12 1px, transparent 1px),
 		linear-gradient(to bottom, #ffffff12 1px, transparent 1px);
-	background-size: --value(--grid-size-*, [length]) --value(--grid-size-*, [length]);
+	background-size: 24px 24px;
+}
+
+/* Small grid for dark backgrounds */
+@utility bg-grid-light-sm {
+	background-image:
+		linear-gradient(to right, #ffffff12 1px, transparent 1px),
+		linear-gradient(to bottom, #ffffff12 1px, transparent 1px);
+	background-size: 20px 20px;
+}
+
+/* Large grid for dark backgrounds */
+@utility bg-grid-light-lg {
+	background-image:
+		linear-gradient(to right, #ffffff12 1px, transparent 1px),
+		linear-gradient(to bottom, #ffffff12 1px, transparent 1px);
+	background-size: 40px 40px;
 }
 
 /* Base Styles */

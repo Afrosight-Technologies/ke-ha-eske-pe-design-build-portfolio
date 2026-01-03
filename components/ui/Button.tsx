@@ -5,7 +5,7 @@ import { type ButtonHTMLAttributes, forwardRef, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 // Button Variants
-type ButtonVariant = "primary" | "outline" | "ghost";
+type ButtonVariant = "primary" | "outline" | "ghost" | "link";
 type ButtonSize = "sm" | "default" | "lg";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -50,12 +50,20 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 			outline:
 				"bg-transparent text-foreground border border-primary hover:bg-primary hover:text-primary-foreground",
 			ghost: "bg-transparent text-foreground border-none hover:opacity-60",
+			link: "bg-transparent text-foreground border-none p-0 underline-offset-4 hover:underline",
+		};
+
+		// Link variant doesn't need padding from size, just font size
+		const linkSizeStyles: Record<ButtonSize, string> = {
+			sm: "text-[10px] tracking-widest",
+			default: "text-xs tracking-[0.2em]",
+			lg: "text-sm tracking-[0.3em]",
 		};
 
 		// Combined class names using cn utility
 		const combinedClassName = cn(
 			baseStyles,
-			sizeStyles[size],
+			variant === "link" ? linkSizeStyles[size] : sizeStyles[size],
 			variantStyles[variant],
 			fullWidth && "w-full",
 			className,
