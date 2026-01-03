@@ -94,14 +94,11 @@ const categories = [
 	{ id: "renovation", label: "Renovation" },
 ];
 
-
 export function Works() {
 	const [activeFilter, setActiveFilter] = useState("all");
 
 	const filteredProjects =
-		activeFilter === "all"
-			? projects
-			: projects.filter((p) => p.categoryKey === activeFilter);
+		activeFilter === "all" ? projects : projects.filter((p) => p.categoryKey === activeFilter);
 
 	return (
 		<section id="works" className="py-16 md:py-24 px-6 md:px-12 bg-background overflow-hidden">
@@ -143,10 +140,7 @@ export function Works() {
 				</motion.div>
 
 				{/* Projects Grid */}
-				<motion.div
-					layout
-					className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2"
-				>
+				<motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
 					<AnimatePresence mode="popLayout">
 						{filteredProjects.map((project) => (
 							<ProjectCard key={project.id} project={project} />
