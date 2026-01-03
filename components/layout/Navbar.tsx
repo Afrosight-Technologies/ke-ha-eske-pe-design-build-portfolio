@@ -252,4 +252,3 @@ function MobileMenu({ isOpen, onClose, navItems }: MobileMenuProps) {
 		</AnimatePresence>
 	);
 }
-

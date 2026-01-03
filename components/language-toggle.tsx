@@ -29,4 +29,3 @@ export function LanguageToggle({ className }: LanguageToggleProps) {
 		</Button>
 	);
 }
-
