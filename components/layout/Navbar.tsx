@@ -25,7 +25,7 @@ function NavLink({ href, children, className, onClick }: NavLinkProps) {
 
 	const isHashLink = href.startsWith("#");
 
-	const MotionLink = isHashLink ? motion.a : motion(Link);
+	const MotionLink = isHashLink ? motion.a : motion.create(Link);
 
 	return (
 		<MotionLink

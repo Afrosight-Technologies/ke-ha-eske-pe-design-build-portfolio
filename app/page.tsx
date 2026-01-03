@@ -1,3 +1,12 @@
+import { CTA, Hero, Philosophy, Works } from "@/components/landing";
+
 export default function Home() {
-	return <main className="min-h-screen p-32 space-y-16"></main>;
+	return (
+		<main>
+			<Hero />
+			<Philosophy />
+			<Works />
+			<CTA />
+		</main>
+	);
 }
