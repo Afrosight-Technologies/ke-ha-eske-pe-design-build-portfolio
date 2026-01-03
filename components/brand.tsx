@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-type BrandVariant = "logo" | "logo-text" | "full";
+type BrandVariant = "logo" | "logo-with-text" | "full";
 
 interface BrandProps {
 	variant?: BrandVariant;
@@ -22,10 +22,10 @@ export function Brand({ variant = "full", className }: BrandProps) {
 			{/* Text content */}
 			{showName && (
 				<div className="flex items-baseline">
-					<span className="font-bold text-base md:text-xl tracking-[0.2em] whitespace-nowrap uppercase">
+					<span className="font-semibold text-base md:text-xl tracking-widest whitespace-nowrap uppercase">
 						KE HA ESKE PE
 						{showTagline && (
-							<span className="font-light text-xs md:text-sm tracking-widest text-secondary ml-2 border-l border-primary/20 pl-2">
+							<span className="font-light text-xs tracking-widest text-secondary ml-2 border-l border-primary/20 pl-2">
 								DESIGN AND BUILD
 							</span>
 						)}

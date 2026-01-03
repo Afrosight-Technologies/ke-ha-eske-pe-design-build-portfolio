@@ -20,7 +20,7 @@ interface NavLinkProps {
 }
 
 function NavLink({ href, children, className, onClick }: NavLinkProps) {
-	const baseStyles = "relative overflow-hidden py-1 font-bold uppercase text-xs tracking-[0.25em]";
+	const baseStyles = "relative overflow-hidden py-1 font-semibold uppercase text-xs tracking-[0.25em]";
 
 	const isHashLink = href.startsWith("#");
 
