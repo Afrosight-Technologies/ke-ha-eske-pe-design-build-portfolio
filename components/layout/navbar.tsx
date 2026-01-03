@@ -108,7 +108,10 @@ export function Navbar() {
 
 					<div className="flex items-center gap-2 border-l border-primary/10 pl-6 ml-2">
 						<LanguageToggle className="text-muted-foreground" />
-						<Link href={`tel:${phone}`} className="flex items-center gap-2 text-xs text-muted-foreground">
+						<Link
+							href={`tel:${phone}`}
+							className="flex items-center gap-2 text-xs text-muted-foreground"
+						>
 							<Phone size={16} />
 							{phone}
 						</Link>
