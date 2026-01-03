@@ -1,65 +1,200 @@
-import Image from "next/image";
+import { Button } from "@/components/ui";
 
 export default function Home() {
 	return (
-		<div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-			<main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-				<Image
-					className="dark:invert"
-					src="/next.svg"
-					alt="Next.js logo"
-					width={100}
-					height={20}
-					priority
-				/>
-				<div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-					<h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-						To get started, edit the page.tsx file.
-					</h1>
-					<p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-						Looking for a starting point or more instructions? Head over to{" "}
-						<a
-							href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-							className="font-medium text-zinc-950 dark:text-zinc-50"
-						>
-							Templates
-						</a>{" "}
-						or the{" "}
-						<a
-							href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-							className="font-medium text-zinc-950 dark:text-zinc-50"
-						>
-							Learning
-						</a>{" "}
-						center.
-					</p>
+		<main className="min-h-screen p-12 space-y-16">
+			{/* Header */}
+			<div className="space-y-2">
+				<h1 className="text-4xl font-bold tracking-tight">UI Components Preview</h1>
+				<p className="text-muted-foreground">Button & Grid Background Utilities</p>
+			</div>
+
+			{/* Grid Background Utilities */}
+			<section className="space-y-6">
+				<h2 className="text-xl font-bold tracking-wide uppercase text-secondary">
+					Grid Background Utilities (Functional)
+				</h2>
+				<p className="text-sm text-muted-foreground">
+					Using Tailwind v4 functional utilities with --value()
+				</p>
+
+				{/* Theme-based grids */}
+				<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+					{/* Small Grid (20px) */}
+					<div className="relative h-48 border border-border overflow-hidden">
+						<div className="absolute inset-0 bg-grid-sm" />
+						<div className="relative z-10 flex items-center justify-center h-full">
+							<span className="bg-background px-3 py-1 text-sm font-medium">
+								bg-grid-sm (20px)
+							</span>
+						</div>
+					</div>
+
+					{/* Medium Grid (24px) - Default */}
+					<div className="relative h-48 border border-border overflow-hidden">
+						<div className="absolute inset-0 bg-grid-md" />
+						<div className="relative z-10 flex items-center justify-center h-full">
+							<span className="bg-background px-3 py-1 text-sm font-medium">
+								bg-grid-md (24px)
+							</span>
+						</div>
+					</div>
+
+					{/* Large Grid (40px) */}
+					<div className="relative h-48 border border-border overflow-hidden">
+						<div className="absolute inset-0 bg-grid-lg" />
+						<div className="relative z-10 flex items-center justify-center h-full">
+							<span className="bg-background px-3 py-1 text-sm font-medium">
+								bg-grid-lg (40px)
+							</span>
+						</div>
+					</div>
 				</div>
-				<div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-					<a
-						className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-						href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						<Image
-							className="dark:invert"
-							src="/vercel.svg"
-							alt="Vercel logomark"
-							width={16}
-							height={16}
-						/>
-						Deploy Now
-					</a>
-					<a
-						className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-						href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						Documentation
-					</a>
+
+				{/* Arbitrary value grid */}
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+					{/* Arbitrary 32px */}
+					<div className="relative h-48 border border-border overflow-hidden">
+						<div className="absolute inset-0 bg-grid-[32px]" />
+						<div className="relative z-10 flex items-center justify-center h-full">
+							<span className="bg-background px-3 py-1 text-sm font-medium">
+								bg-grid-[32px] (arbitrary)
+							</span>
+						</div>
+					</div>
+
+					{/* Arbitrary 16px */}
+					<div className="relative h-48 border border-border overflow-hidden">
+						<div className="absolute inset-0 bg-grid-[16px]" />
+						<div className="relative z-10 flex items-center justify-center h-full">
+							<span className="bg-background px-3 py-1 text-sm font-medium">
+								bg-grid-[16px] (arbitrary)
+							</span>
+						</div>
+					</div>
 				</div>
-			</main>
-		</div>
+
+				{/* Dark Background Grids */}
+				<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+					{/* Light Grid Small on Dark */}
+					<div className="relative h-48 bg-accent overflow-hidden">
+						<div className="absolute inset-0 bg-grid-light-sm" />
+						<div className="relative z-10 flex items-center justify-center h-full">
+							<span className="bg-accent text-accent-foreground px-3 py-1 text-sm font-medium">
+								bg-grid-light-sm
+							</span>
+						</div>
+					</div>
+
+					{/* Light Grid Medium on Dark */}
+					<div className="relative h-48 bg-accent overflow-hidden">
+						<div className="absolute inset-0 bg-grid-light-md" />
+						<div className="relative z-10 flex items-center justify-center h-full">
+							<span className="bg-accent text-accent-foreground px-3 py-1 text-sm font-medium">
+								bg-grid-light-md
+							</span>
+						</div>
+					</div>
+
+					{/* Light Grid Large on Dark */}
+					<div className="relative h-48 bg-accent overflow-hidden">
+						<div className="absolute inset-0 bg-grid-light-lg" />
+						<div className="relative z-10 flex items-center justify-center h-full">
+							<span className="bg-accent text-accent-foreground px-3 py-1 text-sm font-medium">
+								bg-grid-light-lg
+							</span>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			{/* Primary Variant */}
+			<section className="space-y-6">
+				<h2 className="text-xl font-bold tracking-wide uppercase text-secondary">
+					Button - Primary Variant
+				</h2>
+				<div className="flex flex-wrap gap-6 items-center">
+					<Button variant="primary" size="sm">
+						Small
+					</Button>
+					<Button variant="primary" size="default">
+						Default
+					</Button>
+					<Button variant="primary" size="lg">
+						Large
+					</Button>
+					<Button variant="primary" disabled>
+						Disabled
+					</Button>
+				</div>
+			</section>
+
+			{/* Primary with Arrow Animation */}
+			<section className="space-y-6">
+				<h2 className="text-xl font-bold tracking-wide uppercase text-secondary">
+					Button - Primary with Arrow (CTA Style)
+				</h2>
+				<div className="flex flex-wrap gap-6 items-center">
+					<Button variant="primary" size="lg" showArrow>
+						Start Your Project
+					</Button>
+					<Button variant="primary" size="default" showArrow>
+						Get Started
+					</Button>
+				</div>
+			</section>
+
+			{/* Outline Variant */}
+			<section className="space-y-6">
+				<h2 className="text-xl font-bold tracking-wide uppercase text-secondary">
+					Button - Outline Variant
+				</h2>
+				<div className="flex flex-wrap gap-6 items-center">
+					<Button variant="outline" size="sm">
+						Consult
+					</Button>
+					<Button variant="outline" size="default">
+						View Work
+					</Button>
+					<Button variant="outline" size="lg">
+						Contact Us
+					</Button>
+				</div>
+			</section>
+
+			{/* Ghost Variant */}
+			<section className="space-y-6">
+				<h2 className="text-xl font-bold tracking-wide uppercase text-secondary">
+					Button - Ghost Variant
+				</h2>
+				<div className="flex flex-wrap gap-6 items-center">
+					<Button variant="ghost" size="sm">
+						አማ
+					</Button>
+					<Button variant="ghost" size="default">
+						Learn More
+					</Button>
+				</div>
+			</section>
+
+			{/* Dark Background Demo with Grid */}
+			<section className="relative space-y-6 bg-accent p-8 -mx-12 overflow-hidden">
+				<div className="absolute inset-0 bg-grid-light-md" />
+				<div className="relative z-10">
+					<h2 className="text-xl font-bold tracking-wide uppercase text-accent-foreground">
+						On Dark Background with Grid
+					</h2>
+					<div className="flex flex-wrap gap-6 items-center mt-6">
+						<Button
+							variant="outline"
+							size="lg"
+							className="border-white text-white hover:bg-white hover:text-black"
+						>
+							Start Your Project
+						</Button>
+					</div>
+				</div>
+			</section>
+		</main>
 	);
 }
