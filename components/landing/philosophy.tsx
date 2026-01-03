@@ -34,14 +34,12 @@ export function Philosophy() {
 							viewport={{ once: true }}
 							transition={{ duration: 0.8 }}
 						>
-							<h2 className="text-[10px] tracking-[0.5em] uppercase text-secondary mb-6 font-bold">
+							<h2 className="text-3xl md:text-5xl font-bold tracking-[0.3em] mb-8 uppercase">
 								OUR PHILOSOPHY
 							</h2>
-							<h3 className="text-4xl md:text-5xl font-bold tracking-tighter leading-tight mb-8">
-								The Visionary
-								<br />
-								Alphabet
-							</h3>
+							<p className="text-2xl md:text-3xl font-light tracking-tight leading-tight mb-8">
+								The Visionary Alphabet
+							</p>
 							<div className="w-12 h-[2px] bg-foreground mb-8" />
 							<p className="text-lg text-muted-foreground leading-relaxed font-light mb-10">
 								The name
@@ -82,7 +80,7 @@ export function Philosophy() {
 							<div className="space-y-4">
 								<div className="flex items-center gap-2">
 									<Cog size={28} className="text-foreground" />
-									<h4 className="text-xl font-bold tracking-tight uppercase">
+									<h4 className="text-base md:text-xl font-bold tracking-tight uppercase whitespace-nowrap">
 										Bridging The Fragmentation
 									</h4>
 								</div>
@@ -96,7 +94,7 @@ export function Philosophy() {
 							<div className="space-y-4">
 								<div className="flex items-center gap-2">
 									<HeartHandshake size={28} className="text-foreground" />
-									<h4 className="text-xl font-bold tracking-tight uppercase">
+									<h4 className="text-base md:text-xl font-bold tracking-tight uppercase whitespace-nowrap">
 										Single-Point Accountability
 									</h4>
 								</div>
@@ -120,7 +118,7 @@ export function Philosophy() {
 								<div className="flex-1">
 									<div className="flex items-center gap-3 mb-4">
 										<Hammer size={28} className="text-foreground" />
-										<h4 className="text-sm font-bold tracking-[0.2em] uppercase">
+										<h4 className="text-base md:text-xl font-bold tracking-tight uppercase whitespace-nowrap">
 											From Paper To Ground
 										</h4>
 									</div>

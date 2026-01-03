@@ -6,6 +6,7 @@ import Link from "next/link";
 import { type ReactNode, useEffect, useState } from "react";
 import { Brand } from "@/components/brand";
 import { LanguageToggle } from "@/components/language-toggle";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
@@ -82,7 +83,7 @@ export function Navbar() {
 	}, [isOpen]);
 
 	const navItems = [
-		{ label: "Work", href: "#work" },
+		{ label: "Works", href: "#works" },
 		{ label: "About", href: "/about" },
 	];
 
@@ -106,7 +107,8 @@ export function Navbar() {
 						Consult
 					</Button>
 
-					<div className="flex items-center gap-2 border-l border-primary/10 pl-6 ml-2">
+					<div className="flex items-center gap-1 border-l border-primary/10 pl-6 ml-2">
+						<ThemeToggle />
 						<LanguageToggle className="text-muted-foreground" />
 						<Link
 							href={`tel:${phone}`}
@@ -209,7 +211,10 @@ function MobileMenu({ isOpen, onClose, navItems }: MobileMenuProps) {
 						<motion.div variants={itemVariants} className="w-12 h-px bg-border mx-auto" />
 
 						<motion.div variants={itemVariants} className="flex flex-col items-center gap-4">
-							<LanguageToggle className="text-muted-foreground" />
+							<div className="flex items-center gap-4">
+								<ThemeToggle />
+								<LanguageToggle className="text-muted-foreground" />
+							</div>
 							<Link
 								href={`tel:${phone}`}
 								className="flex items-center gap-2 text-sm font-mono tracking-widest text-muted-foreground"
