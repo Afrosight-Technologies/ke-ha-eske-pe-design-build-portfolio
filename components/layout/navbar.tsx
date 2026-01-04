@@ -21,7 +21,7 @@ interface NavLinkProps {
 
 function NavLink({ href, children, className, onClick }: NavLinkProps) {
 	const baseStyles =
-		"relative overflow-hidden py-1 font-semibold uppercase text-xs tracking-[0.25em]";
+		"relative overflow-hidden py-1 font-semibold uppercase text-sm tracking-[0.2em]";
 
 	const isHashLink = href.startsWith("#");
 
@@ -82,7 +82,7 @@ export function Navbar() {
 	}, [isOpen]);
 
 	const navItems = [
-		{ label: "Work", href: "#work" },
+		{ label: "Works", href: "#works" },
 		{ label: "About", href: "/about" },
 	];
 
@@ -91,8 +91,8 @@ export function Navbar() {
 	return (
 		<>
 			{/* Main Navigation Bar */}
-			<nav className="fixed w-full px-6 md:px-12 py-6 flex justify-between items-center z-1000 text-foreground  backdrop-blur-lg">
-				<Brand />
+			<nav className="fixed w-full px-6 md:px-12 py-4 flex justify-between items-center z-50 text-foreground bg-background/80 backdrop-blur-md">
+				<Brand className="flex-wrap" />
 
 				{/* Desktop Navigation */}
 				<div className="hidden md:flex items-center gap-10">
@@ -102,13 +102,16 @@ export function Navbar() {
 						</NavLink>
 					))}
 
-					<Button variant="primary" size="sm">
+					<Button variant="outline" size="default">
 						Consult
 					</Button>
 
-					<div className="flex items-center gap-2 border-l border-primary/10 pl-6 ml-2">
-						<LanguageToggle />
-						<Link href={`tel:${phone}`} className="text-secondary flex items-center gap-2 text-xs">
+					<div className="flex items-center gap-1 border-l border-primary/10 pl-6 ml-2">
+						<LanguageToggle className="text-muted-foreground" />
+						<Link
+							href={`tel:${phone}`}
+							className="flex items-center gap-2 text-xs text-muted-foreground"
+						>
 							<Phone size={16} />
 							{phone}
 						</Link>
@@ -119,7 +122,7 @@ export function Navbar() {
 				<button
 					type="button"
 					onClick={() => setIsOpen(!isOpen)}
-					className="md:hidden p-2 z-1001 relative"
+					className="md:hidden p-2 z-50 relative"
 					aria-label="Toggle Menu"
 				>
 					{isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -181,7 +184,7 @@ function MobileMenu({ isOpen, onClose, navItems }: MobileMenuProps) {
 					initial="closed"
 					animate="open"
 					exit="closed"
-					className="fixed inset-0 bg-background z-999 flex flex-col justify-center items-center"
+					className="fixed inset-0 bg-background z-40 flex flex-col justify-center items-center"
 				>
 					<div className="flex flex-col gap-8 text-center">
 						{navItems.map((item) => (
@@ -206,10 +209,12 @@ function MobileMenu({ isOpen, onClose, navItems }: MobileMenuProps) {
 						<motion.div variants={itemVariants} className="w-12 h-px bg-border mx-auto" />
 
 						<motion.div variants={itemVariants} className="flex flex-col items-center gap-4">
-							<LanguageToggle />
+							<div className="flex items-center gap-4">
+								<LanguageToggle className="text-muted-foreground" />
+							</div>
 							<Link
 								href={`tel:${phone}`}
-								className="text-secondary flex items-center gap-2 text-sm font-mono tracking-widest"
+								className="flex items-center gap-2 text-sm font-mono tracking-widest text-muted-foreground"
 							>
 								<Phone size={16} />
 								{phone}
