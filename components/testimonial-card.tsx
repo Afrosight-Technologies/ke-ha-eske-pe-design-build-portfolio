@@ -3,13 +3,8 @@
 import { Quote } from "lucide-react";
 import { motion } from "motion/react";
 import Image from "next/image";
+import type { TESTIMONIALS_QUERYResult } from "@/sanity/types";
 
-interface TestimonialCardProps {
-	name: string;
-	role: string;
-	quote: string;
-	avatar?: string;
-}
 
 // Generate initials from name
 function getInitials(name: string): string {
@@ -21,7 +16,7 @@ function getInitials(name: string): string {
 		.slice(0, 2);
 }
 
-export function TestimonialCard({ name, role, quote, avatar }: TestimonialCardProps) {
+export function TestimonialCard({ name, role, quote, avatar }: TESTIMONIALS_QUERYResult[number]) {
 	return (
 		<motion.div className="relative p-8 md:p-10 border border-border bg-muted/30 flex flex-col h-full group transition-all duration-500 hover:bg-background hover:shadow-xl hover:shadow-foreground/5">
 			{/* Background Quote Icon */}
@@ -44,8 +39,8 @@ export function TestimonialCard({ name, role, quote, avatar }: TestimonialCardPr
 						<Image
 							src={avatar}
 							alt={name}
-							width={48}
-							height={48}
+							width={200}
+							height={200}
 							className="w-full h-full object-cover"
 						/>
 					) : (
