@@ -82,7 +82,7 @@ export function Navbar() {
 	}, [isOpen]);
 
 	const navItems = [
-		{ label: "Works", href: "#works" },
+		{ label: "Works", href: "/#works" },
 		{ label: "About", href: "/about" },
 	];
 
@@ -92,7 +92,7 @@ export function Navbar() {
 		<>
 			{/* Main Navigation Bar */}
 			<nav className="fixed w-full px-6 md:px-12 py-4 flex justify-between items-center z-50 text-foreground bg-background/80 backdrop-blur-md">
-				<Brand className="flex-wrap" />
+				<Brand />
 
 				{/* Desktop Navigation */}
 				<div className="hidden md:flex items-center gap-10">
@@ -102,9 +102,11 @@ export function Navbar() {
 						</NavLink>
 					))}
 
-					<Button variant="outline" size="default">
-						Consult
-					</Button>
+					<Link href="/contact">
+						<Button variant="outline" size="default">
+							Consult
+						</Button>
+					</Link>
 
 					<div className="flex items-center gap-1 border-l border-primary/10 pl-6 ml-2">
 						<LanguageToggle className="text-muted-foreground" />
@@ -200,9 +202,11 @@ function MobileMenu({ isOpen, onClose, navItems }: MobileMenuProps) {
 						))}
 
 						<motion.div variants={itemVariants}>
-							<Button variant="outline" onClick={onClose}>
-								Consult
-							</Button>
+							<Link href="/contact">
+								<Button variant="outline" size="default">
+									Consult
+								</Button>
+							</Link>
 						</motion.div>
 
 						{/* Separator */}

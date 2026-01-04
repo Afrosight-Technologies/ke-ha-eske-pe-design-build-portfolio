@@ -20,7 +20,7 @@ export type Testimonial = {
   _updatedAt: string;
   _rev: string;
   name: string;
-  role: string;
+  role?: string;
   company?: string;
   quote: string;
   avatar?: {
@@ -63,6 +63,7 @@ export type Project = {
   slug: Slug;
   category: "exterior" | "interior" | "construction" | "finishing" | "renovation";
   location?: string;
+  area?: number;
   year?: number;
   clientName?: string;
   description?: string;
@@ -209,16 +210,46 @@ export declare const internalGroqTypeReferenceTo: unique symbol;
 export type TESTIMONIALS_QUERYResult = Array<{
   _id: string;
   name: string;
-  role: string;
+  role: string | null;
   company: string | null;
   quote: string;
   avatar: string | null;
 }>;
+// Variable: PROJECTS_QUERY
+// Query: *[_type == "project" && defined(slug.current)] | order(_createdAt desc) {    _id,    title,    slug,    category,    "featuredImage": featuredImage.asset->url  }
+export type PROJECTS_QUERYResult = Array<{
+  _id: string;
+  title: string;
+  slug: Slug;
+  category: "construction" | "exterior" | "finishing" | "interior" | "renovation";
+  featuredImage: string | null;
+}>;
+// Variable: PROJECT_QUERY
+// Query: *[_type == "project" && slug.current == $slug][0] {    _id,    title,    slug,    category,    location,    area,    year,    clientName,    description,    "featuredImage": featuredImage.asset->url,    "gallery": gallery[].asset->url,    specifications[] {      label,      value    }  }
+export type PROJECT_QUERYResult = {
+  _id: string;
+  title: string;
+  slug: Slug;
+  category: "construction" | "exterior" | "finishing" | "interior" | "renovation";
+  location: string | null;
+  area: number | null;
+  year: number | null;
+  clientName: string | null;
+  description: string | null;
+  featuredImage: string | null;
+  gallery: Array<string | null> | null;
+  specifications: Array<{
+    label: string | null;
+    value: string | null;
+  }> | null;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "\n  *[_type == \"testimonial\"] | order(_createdAt desc) {\n    _id,\n    name,\n    role,\n    company,\n    quote,\n    \"avatar\": avatar.asset->url\n  }\n": TESTIMONIALS_QUERYResult;
+    "\n  *[_type == \"project\" && defined(slug.current)] | order(_createdAt desc) {\n    _id,\n    title,\n    slug,\n    category,\n    \"featuredImage\": featuredImage.asset->url\n  }\n": PROJECTS_QUERYResult;
+    "\n  *[_type == \"project\" && slug.current == $slug][0] {\n    _id,\n    title,\n    slug,\n    category,\n    location,\n    area,\n    year,\n    clientName,\n    description,\n    \"featuredImage\": featuredImage.asset->url,\n    \"gallery\": gallery[].asset->url,\n    specifications[] {\n      label,\n      value\n    }\n  }\n": PROJECT_QUERYResult;
   }
 }
