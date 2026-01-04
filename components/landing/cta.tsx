@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import Link from "next/link";
 import { Button } from "@/components/ui";
 
 export function CTA() {
@@ -28,9 +29,11 @@ export function CTA() {
 						viewport={{ once: true }}
 						transition={{ duration: 0.6, delay: 0.3 }}
 					>
-						<Button variant="primary" showArrow size="lg" className="uppercase">
-							Start Your Project
-						</Button>
+						<Link href="/contact">
+							<Button variant="primary" showArrow size="lg" className="uppercase">
+								Start Your Project
+							</Button>
+						</Link>
 					</motion.div>
 				</motion.div>
 			</div>

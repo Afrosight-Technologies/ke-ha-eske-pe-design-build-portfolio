@@ -102,9 +102,11 @@ export function Navbar() {
 						</NavLink>
 					))}
 
-					<Button variant="outline" size="default">
-						Consult
-					</Button>
+					<Link href="/contact">
+						<Button variant="outline" size="default">
+							Consult
+						</Button>
+					</Link>
 
 					<div className="flex items-center gap-1 border-l border-primary/10 pl-6 ml-2">
 						<LanguageToggle className="text-muted-foreground" />
@@ -200,9 +202,11 @@ function MobileMenu({ isOpen, onClose, navItems }: MobileMenuProps) {
 						))}
 
 						<motion.div variants={itemVariants}>
-							<Button variant="outline" onClick={onClose}>
-								Consult
-							</Button>
+							<Link href="/contact">
+								<Button variant="outline" size="default">
+									Consult
+								</Button>
+							</Link>
 						</motion.div>
 
 						{/* Separator */}
