@@ -67,9 +67,7 @@ export function TestimonialsCarousel({ testimonials }: TestimonialsCarouselProps
 							viewport={{ once: true }}
 							transition={{ duration: 0.6 }}
 						>
-							<TestimonialCard
-								{...testimony}
-							/>
+							<TestimonialCard {...testimony} />
 						</motion.div>
 					))}
 				</motion.div>

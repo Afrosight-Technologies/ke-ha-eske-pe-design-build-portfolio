@@ -5,7 +5,6 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import type { TESTIMONIALS_QUERYResult } from "@/sanity/types";
 
-
 // Generate initials from name
 function getInitials(name: string): string {
 	return name
