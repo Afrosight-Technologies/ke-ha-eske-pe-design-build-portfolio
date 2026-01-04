@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
-import ProjectCard from "../project-card";
+import ProjectCard from "./project-card";
 
 // Mock project data - will be replaced with Sanity data later
 const projects = [

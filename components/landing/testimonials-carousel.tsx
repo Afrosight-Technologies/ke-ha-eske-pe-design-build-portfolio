@@ -3,7 +3,7 @@
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
-import { TestimonialCard } from "@/components/testimonial-card";
+import { TestimonialCard } from "@/components/landing/testimonial-card";
 import type { TESTIMONIALS_QUERYResult } from "@/sanity/types";
 
 interface TestimonialsCarouselProps {

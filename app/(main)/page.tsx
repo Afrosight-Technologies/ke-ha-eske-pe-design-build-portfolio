@@ -1,4 +1,6 @@
-import { CTA, Hero, Philosophy, Testimonials, Works } from "@/components/landing";
+import { Suspense } from "react";
+import { Hero, Philosophy, Testimonials, Works } from "@/components/landing";
+import { TestimonialsSkeleton } from "@/components/landing/testimonials-skeloton";
 
 export default function Home() {
 	return (
@@ -6,8 +8,9 @@ export default function Home() {
 			<Hero />
 			<Philosophy />
 			<Works />
-			<Testimonials />
-			<CTA />
+			<Suspense fallback={<TestimonialsSkeleton />}>
+				<Testimonials />
+			</Suspense>
 		</main>
 	);
 }
