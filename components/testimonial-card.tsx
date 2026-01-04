@@ -15,7 +15,7 @@ function getInitials(name: string): string {
 		.slice(0, 2);
 }
 
-export function TestimonialCard({ name, role, quote, avatar }: TESTIMONIALS_QUERYResult[number]) {
+export function TestimonialCard({ name, role, company, quote, avatar }: TESTIMONIALS_QUERYResult[number]) {
 	return (
 		<motion.div className="relative p-8 md:p-10 border border-border bg-muted/30 flex flex-col h-full group transition-all duration-500 hover:bg-background hover:shadow-xl hover:shadow-foreground/5">
 			{/* Background Quote Icon */}
@@ -25,7 +25,7 @@ export function TestimonialCard({ name, role, quote, avatar }: TESTIMONIALS_QUER
 
 			{/* Quote Content */}
 			<div className="mb-10 relative z-10">
-				<p className="text-lg leading-relaxed text-foreground font-light italic line-clamp-5">
+				<p className="text-lg leading-relaxed text-foreground font-light italic line-clamp-6">
 					"{quote}"
 				</p>
 			</div>
@@ -50,7 +50,12 @@ export function TestimonialCard({ name, role, quote, avatar }: TESTIMONIALS_QUER
 				{/* Name & Role */}
 				<div>
 					<h4 className="font-bold text-sm tracking-widest uppercase mb-1">{name}</h4>
-					<p className="text-xs uppercase tracking-[0.2em] text-secondary">{role}</p>
+					<p className="text-xs uppercase text-secondary tracking-[0.2em] mb-1">
+						{role}
+					</p>
+					<p className="text-xs uppercase text-secondary tracking-[0.2em]">
+						{company}
+					</p>
 				</div>
 			</div>
 		</motion.div>

@@ -74,11 +74,17 @@ export function TestimonialsCarousel({ testimonials }: TestimonialsCarouselProps
 			</div>
 
 			{/* drag hint */}
-			<div className="text-center text-sm text-secondary mt-8 tracking-widest uppercase flex items-center justify-center gap-2">
+			<motion.div 
+				initial={{ opacity: 0, y: 10 }}
+				whileInView={{ opacity: 1, y: 0 }}
+				viewport={{ once: true }}
+				transition={{ duration: 0.6, delay: 0.2 }}
+				className="text-center text-sm text-secondary mt-8 tracking-widest uppercase flex items-center justify-center gap-2"
+			>
 				<ArrowLeft size={14} />
 				<span>Drag to explore</span>
 				<ArrowRight size={14} />
-			</div>
+			</motion.div>
 
 			{/* Bottom Divider */}
 			<motion.div

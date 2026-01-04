@@ -48,6 +48,13 @@
         },
         "optional": false
       },
+      "company": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
       "quote": {
         "type": "objectAttribute",
         "value": {

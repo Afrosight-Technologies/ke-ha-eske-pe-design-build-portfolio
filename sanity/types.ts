@@ -21,6 +21,7 @@ export type Testimonial = {
   _rev: string;
   name: string;
   role: string;
+  company?: string;
   quote: string;
   avatar?: {
     asset?: {
@@ -204,11 +205,12 @@ export type AllSanitySchemaTypes = Testimonial | SanityImageCrop | SanityImageHo
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: sanity/lib/queries.ts
 // Variable: TESTIMONIALS_QUERY
-// Query: *[_type == "testimonial"] | order(order asc) {    _id,    name,    role,    quote,    "avatar": avatar.asset->url  }
+// Query: *[_type == "testimonial"] | order(_createdAt desc) {    _id,    name,    role,    company,    quote,    "avatar": avatar.asset->url  }
 export type TESTIMONIALS_QUERYResult = Array<{
   _id: string;
   name: string;
   role: string;
+  company: string | null;
   quote: string;
   avatar: string | null;
 }>;
@@ -217,6 +219,6 @@ export type TESTIMONIALS_QUERYResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "\n  *[_type == \"testimonial\"] | order(order asc) {\n    _id,\n    name,\n    role,\n    quote,\n    \"avatar\": avatar.asset->url\n  }\n": TESTIMONIALS_QUERYResult;
+    "\n  *[_type == \"testimonial\"] | order(_createdAt desc) {\n    _id,\n    name,\n    role,\n    company,\n    quote,\n    \"avatar\": avatar.asset->url\n  }\n": TESTIMONIALS_QUERYResult;
   }
 }
