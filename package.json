@@ -9,9 +9,13 @@
 		"lint": "biome check .",
 		"lint:fix": "biome check . --fix --unsafe",
 		"typecheck": "tsc --noEmit",
-		"prepare": "husky"
+		"prepare": "husky",
+		"predev": "pnpm run typegen",
+		"prebuild": "pnpm run typegen",
+		"typegen": "sanity schema extract --enforce-required-fields --path ./sanity/schema.json && sanity typegen generate"
 	},
 	"dependencies": {
+		"@sanity/client": "^7.13.2",
 		"@sanity/image-url": "^1.2.0",
 		"@sanity/vision": "^4.22.0",
 		"clsx": "^2.1.1",

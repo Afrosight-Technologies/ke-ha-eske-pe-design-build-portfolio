@@ -12,8 +12,7 @@
 			"!**/node_modules",
 			"!**/dist",
 			"!**/.next",
-			"!**/sanity",
-			"!**/ke-ha-eske-pe-design-and-build-mock"
+			"!**/sanity"
 		]
 	},
 	"formatter": {

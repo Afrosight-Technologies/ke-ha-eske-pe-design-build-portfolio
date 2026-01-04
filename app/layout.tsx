@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat, Noto_Sans_Ethiopic } from "next/font/google";
 import "./globals.css";
-import { Footer, Navbar } from "@/components/layout";
 
 const montserrat = Montserrat({
 	variable: "--font-montserrat",
@@ -17,7 +16,7 @@ const notoSansEthiopic = Noto_Sans_Ethiopic({
 
 export const metadata: Metadata = {
 	title: "Ke Ha Eske Pe Design And Build",
-	description: "From A to Z - Design and Build | ከሀ እስከ ፐ - ንድፍ እና ግንባታ",
+	description: "Ke Ha Eske Pe Design and Build | ከሀ እስከ ፐ - ንድፍ እና ግንባታ",
 };
 
 export default function RootLayout({
@@ -28,9 +27,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={`${montserrat.variable} ${notoSansEthiopic.variable} antialiased`}>
-				<Navbar />
 				{children}
-				<Footer />
 			</body>
 		</html>
 	);
