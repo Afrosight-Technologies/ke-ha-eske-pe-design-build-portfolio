@@ -9,4 +9,3 @@ export const PROJECT_CATEGORIES = [
 
 // Type for category IDs
 export type ProjectCategoryId = (typeof PROJECT_CATEGORIES)[number]["id"];
-
