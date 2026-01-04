@@ -24,21 +24,20 @@ export function Hero() {
 						className="object-cover grayscale"
 						priority
 					/>
-					<div className="absolute inset-0 bg-gradient-radial from-transparent to-black/60" />
 				</motion.div>
 
 				{/* Content */}
 				<motion.div
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.8, ease: "easeOut" }}
+					transition={{ duration: 0.9, ease: "easeOut" }}
 					className="z-10 text-center"
 				>
-					<div className="font-amharic text-secondary text-lg md:text-xl mb-1 tracking-widest">
+					<div className="font-amharic text-secondary text-xl md:text-2xl mb-1 tracking-widest">
 						ከሀ
 					</div>
-					<h1 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">THE BEGINNING</h1>
-					<p className="text-base md:text-lg max-w-sm mx-auto leading-relaxed text-muted-foreground">
+					<h1 className="text-3xl md:text-6xl font-bold mb-4 tracking-tight">THE BEGINNING</h1>
+					<p className="text-base md:text-lg max-w-sm mx-auto leading-relaxed text-secondary">
 						Design. Vision. The first line drawn on the map of Addis Ababa.
 					</p>
 				</motion.div>
@@ -60,7 +59,6 @@ export function Hero() {
 						className="object-cover grayscale brightness-[0.4]"
 						priority
 					/>
-					<div className="absolute inset-0 bg-gradient-radial from-transparent to-black/60" />
 				</motion.div>
 
 				{/* Grid Overlay */}
@@ -70,13 +68,13 @@ export function Hero() {
 				<motion.div
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+					transition={{ duration: 0.9, delay: 0.1, ease: "easeOut" }}
 					className="z-10 text-center flex flex-col items-center"
 				>
-					<div className="font-amharic text-accent-foreground/40 text-lg md:text-xl mb-1 tracking-widest uppercase">
+					<div className="font-amharic text-secondary text-xl md:text-2xl mb-1 tracking-widest">
 						እስከ ፐ
 					</div>
-					<h1 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">THE END</h1>
+					<h1 className="text-3xl md:text-6xl font-bold mb-4 tracking-tight">THE END</h1>
 					<p className="text-base md:text-lg max-w-sm mx-auto leading-relaxed text-accent-foreground/70">
 						Build. Reality. The final brick cemented with precision.
 					</p>
