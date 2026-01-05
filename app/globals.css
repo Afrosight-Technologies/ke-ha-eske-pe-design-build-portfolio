@@ -99,34 +99,6 @@
 	background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.6) 100%);
 }
 
-/* ===== SHIMMER ANIMATION ===== */
-@keyframes shimmer {
-	0% {
-		transform: translateX(-100%);
-	}
-	100% {
-		transform: translateX(100%);
-	}
-}
-
-@utility animate-shimmer {
-	animation: shimmer 2.5s infinite;
-}
-
-/* ===== TICKER ANIMATION ===== */
-@keyframes ticker {
-	0% {
-		transform: translateX(0);
-	}
-	100% {
-		transform: translateX(-50%);
-	}
-}
-
-@utility animate-ticker {
-	animation: ticker 30s linear infinite;
-}
-
 /* ===== BASE STYLES ===== */
 html {
 	scroll-behavior: smooth;
