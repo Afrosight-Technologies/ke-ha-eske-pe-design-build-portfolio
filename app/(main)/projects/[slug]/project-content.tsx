@@ -218,4 +218,3 @@ export function ProjectContent({ project, categoryLabel }: ProjectContentProps) 
 		</section>
 	);
 }
-

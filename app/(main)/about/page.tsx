@@ -54,10 +54,10 @@ export default function AboutPage() {
 						transition={{ duration: 1.2, delay: 0.3, ease: "circOut" }}
 						className="w-24 h-px bg-foreground mx-auto mb-12 origin-center"
 					/>
-				<motion.p
-					variants={fadeUp}
-					className="max-w-2xl mx-auto text-secondary text-xl font-light leading-relaxed"
-				>
+					<motion.p
+						variants={fadeUp}
+						className="max-w-2xl mx-auto text-secondary text-xl font-light leading-relaxed"
+					>
 						The name &apos;Ke Ha Eske Pe&apos; (ከሀ እስከ ፐ) signifies the complete Amharic alphabet.
 						It represents our core notion: bridging the gap between design and construction to
 						ensure your vision remains uncompromised from the first letter to the last.
@@ -81,8 +81,8 @@ export default function AboutPage() {
 							</h3>
 						</div>
 						<p className="text-lg md:text-xl text-secondary font-light leading-relaxed">
-							To redefine the construction landscape in Ethiopia by providing a seamless,
-							integrated design-build experience that prioritizes architectural integrity above all else.
+							To redefine the construction landscape in Ethiopia by providing a seamless, integrated
+							design-build experience that prioritizes architectural integrity above all else.
 						</p>
 					</motion.div>
 
@@ -95,8 +95,8 @@ export default function AboutPage() {
 							</h3>
 						</div>
 						<p className="text-lg md:text-xl text-secondary font-light leading-relaxed">
-							To become the benchmark for contemporary Ethiopian architecture,
-							creating spaces that honor tradition while embracing modern engineering.
+							To become the benchmark for contemporary Ethiopian architecture, creating spaces that
+							honor tradition while embracing modern engineering.
 						</p>
 					</motion.div>
 				</motion.div>

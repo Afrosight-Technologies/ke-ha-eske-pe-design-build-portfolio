@@ -82,11 +82,7 @@ export default function ContactPage() {
 			<div className="max-w-7xl mx-auto">
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
 					{/* Left: Info */}
-					<motion.div
-						initial="hidden"
-						animate="visible"
-						variants={staggerContainer}
-					>
+					<motion.div initial="hidden" animate="visible" variants={staggerContainer}>
 						<motion.p
 							variants={fadeUp}
 							className="text-label tracking-wide-xl uppercase text-secondary mb-6 font-bold"
