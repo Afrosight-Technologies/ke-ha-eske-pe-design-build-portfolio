@@ -1,6 +1,5 @@
-import { ArrowLeft, Calendar, MapPin, Maximize2, User } from "lucide-react";
+import { Calendar, MapPin, Maximize2, User } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CTA } from "@/components/landing";
 import { PROJECT_CATEGORIES } from "@/lib/constants";
@@ -26,7 +25,6 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 	return (
 		<section className="bg-background min-h-screen pt-32 pb-20">
 			<div className="max-w-7xl mx-auto px-6 md:px-12">
-
 				{/* Hero Section */}
 				<div className="flex flex-col lg:flex-row gap-12 lg:gap-20 mb-24">
 					{/* Left Content */}
