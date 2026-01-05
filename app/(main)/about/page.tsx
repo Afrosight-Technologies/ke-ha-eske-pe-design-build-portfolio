@@ -12,7 +12,6 @@ const architect = {
 		"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800",
 };
 
-const tickerItems = ["DESIGN", "BUILD", "DELIVER", "INNOVATE"];
 
 export default function AboutPage() {
 	return (
@@ -90,36 +89,7 @@ export default function AboutPage() {
 					</div>
 				</div>
 			</div>
-
-			{/* Ticker Section */}
-			<div className="bg-accent py-16 my-24 overflow-hidden">
-				<motion.div
-					className="flex gap-20 whitespace-nowrap"
-					animate={{ x: ["0%", "-50%"] }}
-					transition={{
-						x: {
-							repeat: Infinity,
-							repeatType: "loop",
-							duration: 30,
-							ease: "linear",
-						},
-					}}
-				>
-					{[...Array(6)].map((_, i) => (
-						<div key={`ticker-container-${i.toString()}`} className="flex gap-20 items-center">
-							{tickerItems.map((item, idx) => (
-								<div key={`ticker-item-${idx.toString()}`} className="flex items-center gap-8">
-									<span className="text-accent-foreground text-6xl lg:text-8xl font-bold tracking-tighter">
-										{item}
-									</span>
-									<div className="w-4 h-4 rounded-full bg-accent-foreground" />
-								</div>
-							))}
-						</div>
-					))}
-				</motion.div>
-			</div>
-
+			
 			<CTA />
 		</main>
 	);
