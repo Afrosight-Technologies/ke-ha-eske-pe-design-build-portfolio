@@ -1,5 +1,12 @@
 import { Suspense } from "react";
-import { CTA, Hero, Philosophy, Testimonials, Works } from "@/components/landing";
+import {
+	AtmosphericDivider,
+	CTA,
+	Hero,
+	Philosophy,
+	Testimonials,
+	Works,
+} from "@/components/landing";
 import { TestimonialsSkeleton } from "@/components/landing/testimonials-skeloton";
 import { WorksSkeleton } from "@/components/landing/works-skeleton";
 
@@ -8,6 +15,7 @@ export default function Home() {
 		<main>
 			<Hero />
 			<Philosophy />
+			<AtmosphericDivider />
 			<Suspense fallback={<WorksSkeleton />}>
 				<Works />
 			</Suspense>
