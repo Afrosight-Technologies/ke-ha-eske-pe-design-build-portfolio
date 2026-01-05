@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import logo from "@/public/logo.svg";
+import logo from "@/public/logo-white.svg";
 
 type BrandVariant = "logo" | "logo-with-text" | "full";
 
