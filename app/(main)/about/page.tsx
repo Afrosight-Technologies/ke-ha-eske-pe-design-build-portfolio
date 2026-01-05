@@ -1,6 +1,17 @@
 "use client";
 
-import { Briefcase, Eye, Lightbulb, Ruler, ShieldCheck, Target } from "lucide-react";
+import {
+	Briefcase,
+	ClipboardList,
+	Compass,
+	Eye,
+	HardHat,
+	Home,
+	Lightbulb,
+	Ruler,
+	ShieldCheck,
+	Target,
+} from "lucide-react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import { CTA } from "@/components/landing/cta";
@@ -32,6 +43,30 @@ const coreValues = [
 		icon: Briefcase,
 		title: "Accountability",
 		description: "We take full responsibility from the first sketch to the final key handover.",
+	},
+];
+
+const services = [
+	{
+		icon: Compass,
+		title: "Architectural Design",
+		description: "From conceptual sketches to detailed blueprints, we design buildings that breathe.",
+	},
+	{
+		icon: Home,
+		title: "Interior Architecture",
+		description:
+			"Crafting atmospheric interiors that blend functionality with high-end aesthetics.",
+	},
+	{
+		icon: HardHat,
+		title: "General Construction",
+		description: "Heavy construction managed with structural rigor and expert craftsmanship.",
+	},
+	{
+		icon: ClipboardList,
+		title: "Project Management",
+		description: "Full lifecycle oversight ensuring timelines and budgets are strictly respected.",
 	},
 ];
 
@@ -172,6 +207,66 @@ export default function AboutPage() {
 							</motion.div>
 						))}
 					</motion.div>
+				</div>
+
+				{/* Services Section */}
+				<div className="mb-32 md:mb-40 pt-16 md:pt-20 border-t border-foreground/5">
+					<motion.div
+						initial="hidden"
+						whileInView="visible"
+						viewport={{ once: true, margin: "-50px" }}
+						variants={staggerContainer}
+						className="text-center mb-16 md:mb-24"
+					>
+						<motion.p
+							variants={fadeUp}
+							className="text-label tracking-wide-xl uppercase text-secondary mb-6 font-bold"
+						>
+							Our Services
+						</motion.p>
+						<motion.h3
+							variants={fadeUp}
+							className="text-4xl md:text-5xl font-bold tracking-tighter leading-tight uppercase"
+						>
+							Full Spectrum Solutions
+						</motion.h3>
+					</motion.div>
+
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-foreground/5 overflow-hidden border border-foreground/5">
+						{services.map((service, idx) => (
+							<motion.div
+								key={service.title}
+								initial={{ opacity: 0 }}
+								whileInView={{ opacity: 1 }}
+								viewport={{ once: true }}
+								transition={{ delay: idx * 0.1, duration: 0.5 }}
+								className="bg-background p-10 md:p-14 lg:p-16 flex flex-col group hover:bg-muted transition-colors duration-500"
+							>
+								<div className="flex justify-between items-start mb-10 md:mb-12">
+									<div className="flex items-center gap-5 md:gap-6">
+										<span className="text-5xl md:text-6xl font-bold tracking-tighter opacity-10 group-hover:opacity-20 transition-opacity">
+											0{idx + 1}
+										</span>
+										<div className="w-11 h-11 md:w-12 md:h-12 flex items-center justify-center bg-muted rounded-full group-hover:bg-foreground group-hover:text-background transition-all duration-500">
+											<service.icon size={22} strokeWidth={1.5} />
+										</div>
+									</div>
+								</div>
+
+								<h4 className="text-xl md:text-2xl font-bold tracking-tight uppercase mb-4 md:mb-6 group-hover:translate-x-2 transition-transform duration-500">
+									{service.title}
+								</h4>
+								<p className="text-secondary font-light leading-relaxed text-base md:text-lg max-w-md">
+									{service.description}
+								</p>
+
+								<div className="mt-10 md:mt-12 flex items-center gap-4 text-2xs tracking-wide-lg font-bold uppercase opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+									<div className="w-8 h-px bg-foreground" />
+									Expertise Phase
+								</div>
+							</motion.div>
+						))}
+					</div>
 				</div>
 			</div>
 
