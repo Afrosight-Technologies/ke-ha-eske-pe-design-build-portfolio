@@ -79,7 +79,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 				</div>
 
 				{/* Concept & Gallery Section */}
-				<div className="flex flex-col lg:flex-row gap-20">
+				<div className="flex flex-col lg:flex-row gap-20 py-8 md:py-12">
 					{/* Sticky Left - Concept & Specifications */}
 					<div className="lg:w-1/3">
 						<div className="lg:sticky lg:top-32 space-y-12">
