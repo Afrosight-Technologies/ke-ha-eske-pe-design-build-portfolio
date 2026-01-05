@@ -1,12 +1,6 @@
 "use client";
 
-import {
-	Facebook,
-	Instagram,
-	Mail,
-	MapPin,
-	Phone,
-} from "lucide-react";
+import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { Brand } from "../brand";
@@ -86,11 +80,7 @@ export function Footer() {
 				{/* Social Links */}
 				<div className="flex flex-wrap justify-center gap-8 md:gap-10 mb-16">
 					{socialLinks.map((social) => (
-						<motion.div
-							key={social.label}
-							whileHover={{ y: -4 }}
-							transition={{ duration: 0.2 }}
-						>
+						<motion.div key={social.label} whileHover={{ y: -4 }} transition={{ duration: 0.2 }}>
 							<Link
 								href={social.href}
 								target={social.href.startsWith("http") ? "_blank" : undefined}
@@ -106,9 +96,7 @@ export function Footer() {
 
 				{/* Copyright */}
 				<div className="text-center text-xs tracking-wide-lg uppercase">
-					<p className="mb-6 font-bold text-accent-foreground">
-						KE HA ESKE PE © {currentYear}
-					</p>
+					<p className="mb-6 font-bold text-accent-foreground">KE HA ESKE PE © {currentYear}</p>
 					<p className="text-gray-400 font-light max-w-xs mx-auto leading-loose">
 						Design in Addis Ababa. Built for Eternity.
 					</p>
