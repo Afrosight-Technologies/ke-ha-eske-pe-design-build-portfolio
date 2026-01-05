@@ -79,10 +79,10 @@ export default function ContactPage() {
 										<item.icon size={20} />
 									</div>
 									<div>
-										<p className="text-label tracking-wide-sm uppercase text-secondary font-bold mb-2">
+										<p className="text-2xs md:text-label tracking-wide-sm uppercase text-secondary font-bold mb-2">
 											{item.label}
 										</p>
-										<p className="text-xl font-light leading-snug group-hover:underline decoration-foreground/10">
+										<p className="text-base md:text-xl font-light leading-snug group-hover:underline decoration-foreground/10 break-all">
 											{item.value}
 										</p>
 									</div>
