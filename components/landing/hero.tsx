@@ -7,17 +7,17 @@ import designBgUrl from "@/public/design-hero-bg.webp";
 
 const backgroundImageVariants = {
 	initial: { opacity: 0, scale: 1.02 },
-	animate: { opacity: 0.22, scale: 1 }
+	animate: { opacity: 0.22, scale: 1 },
 };
 
 const buildBackgroundImageVariants = {
 	initial: { opacity: 0, scale: 1.1 },
-	animate: { opacity: 0.25, scale: 1 }
+	animate: { opacity: 0.25, scale: 1 },
 };
 
 const contentVariants = {
 	initial: { opacity: 0, y: 20 },
-	animate: { opacity: 1, y: 0 }
+	animate: { opacity: 1, y: 0 },
 };
 
 export function Hero() {
@@ -59,9 +59,7 @@ export function Hero() {
 					<div className="font-amharic text-secondary text-lg md:text-xl mb-1 tracking-widest opacity-60">
 						ከሀ
 					</div>
-					<h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">
-						THE BEGINNING
-					</h1>
+					<h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">THE BEGINNING</h1>
 					<p className="text-lg md:text-xl max-w-sm mx-auto leading-relaxed text-secondary/80">
 						Design. Vision. The first line drawn on the map of Addis Ababa.
 					</p>
@@ -103,9 +101,7 @@ export function Hero() {
 					<div className="font-amharic text-primary-foreground/40 text-lg md:text-xl mb-1 tracking-widest uppercase">
 						እስከ ፐ
 					</div>
-					<h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">
-						THE END
-					</h1>
+					<h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">THE END</h1>
 					<p className="text-lg md:text-xl max-w-sm mx-auto leading-relaxed text-primary-foreground/70">
 						Build. Reality. The final brick cemented with precision.
 					</p>
