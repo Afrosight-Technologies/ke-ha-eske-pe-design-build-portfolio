@@ -61,7 +61,7 @@ export function Navbar() {
 				{/* Desktop Navigation - white when unscrolled (right side over dark background) */}
 				<div
 					className={cn(
-						"hidden md:flex items-center gap-10 text-xs tracking-wide-md uppercase font-bold transition-colors duration-500",
+						"hidden lg:flex items-center gap-10 text-xs tracking-wide-md uppercase font-bold transition-colors duration-500",
 						scrolled ? "text-foreground" : "text-primary-foreground",
 					)}
 				>
@@ -94,7 +94,7 @@ export function Navbar() {
 						<LanguageToggle className={scrolled ? "" : "text-primary-foreground"} />
 						<Link
 							href={`tel:${phone}`}
-							className="font-mono opacity-60 flex items-center gap-2 text-sm tracking-normal"
+							className="hidden xl:flex font-mono opacity-60 items-center gap-2 text-sm tracking-normal"
 						>
 							<Phone size={12} />
 							{phone}
@@ -106,7 +106,7 @@ export function Navbar() {
 				<button
 					type="button"
 					onClick={() => setIsOpen(!isOpen)}
-					className="md:hidden p-2 z-50 relative text-foreground"
+					className="lg:hidden p-2 z-50 relative text-foreground"
 					aria-label="Toggle Menu"
 				>
 					{isOpen ? <X size={24} /> : <Menu size={24} />}

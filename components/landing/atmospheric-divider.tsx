@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useSpring, useTransform } from "motion/react";
 import Image from "next/image";
 import { useRef } from "react";
 
@@ -11,7 +11,15 @@ export function AtmosphericDivider() {
 		offset: ["start end", "end start"],
 	});
 
-	const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+	// Transform scroll progress to Y position (inverted: moves up as you scroll down)
+	const yRaw = useTransform(scrollYProgress, [0, 1], ["5%", "-5%"]);
+
+	// Add spring physics for smoother parallax (higher damping = slower)
+	const y = useSpring(yRaw, {
+		stiffness: 50,
+		damping: 40,
+		restDelta: 0.001,
+	});
 
 	return (
 		<section
@@ -19,7 +27,7 @@ export function AtmosphericDivider() {
 			className="relative h-[60vh] md:h-[70vh] w-full overflow-hidden flex items-center justify-center"
 		>
 			{/* Parallax Background */}
-			<motion.div style={{ y }} className="absolute inset-0 z-0">
+			<motion.div style={{ y }} className="absolute inset-[-5%] z-0">
 				<Image
 					src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=70&w=1280&fm=webp"
 					alt="Architectural building"
@@ -50,7 +58,7 @@ export function AtmosphericDivider() {
 			</div>
 
 			{/* Bottom Gradient Fade */}
-			<div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-20" />
+			<div className="absolute bottom-0 left-0 right-0 h-32 bg-linear-to-t from-background to-transparent z-20" />
 		</section>
 	);
 }
