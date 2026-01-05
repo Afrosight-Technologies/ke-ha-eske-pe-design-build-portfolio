@@ -27,6 +27,11 @@ export interface ContactFormState {
 		email?: string[];
 		message?: string[];
 	};
+	data?: {
+		name: string;
+		email: string;
+		message: string;
+	};
 }
 
 export async function sendContactEmail(
@@ -34,9 +39,9 @@ export async function sendContactEmail(
 	formData: FormData,
 ): Promise<ContactFormState> {
 	const rawData = {
-		name: formData.get("name"),
-		email: formData.get("email"),
-		message: formData.get("message"),
+		name: (formData.get("name") as string) || "",
+		email: (formData.get("email") as string) || "",
+		message: (formData.get("message") as string) || "",
 	};
 
 	// Validate with Zod
@@ -47,6 +52,7 @@ export async function sendContactEmail(
 			success: false,
 			message: "Please fix the errors below",
 			errors: validatedFields.error.flatten().fieldErrors,
+			data: rawData,
 		};
 	}
 
@@ -58,6 +64,7 @@ export async function sendContactEmail(
 		return {
 			success: false,
 			message: "Email service is not configured. Please contact us directly.",
+			data: rawData,
 		};
 	}
 
@@ -77,6 +84,7 @@ export async function sendContactEmail(
 			return {
 				success: false,
 				message: "Failed to send message. Please try again later.",
+				data: rawData,
 			};
 		}
 
@@ -89,6 +97,7 @@ export async function sendContactEmail(
 		return {
 			success: false,
 			message: "An unexpected error occurred. Please try again later.",
+			data: rawData,
 		};
 	}
 }

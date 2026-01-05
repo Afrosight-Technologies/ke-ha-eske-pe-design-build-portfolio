@@ -167,6 +167,7 @@ export default function ContactPage() {
 											placeholder="John Doe"
 											required
 											type="text"
+											defaultValue={state.data?.name}
 											aria-describedby={state.errors?.name ? "name-error" : undefined}
 										/>
 										{state.errors?.name && (
@@ -184,6 +185,7 @@ export default function ContactPage() {
 											placeholder="john@example.com"
 											required
 											type="email"
+											defaultValue={state.data?.email}
 											aria-describedby={state.errors?.email ? "email-error" : undefined}
 										/>
 										{state.errors?.email && (
@@ -201,6 +203,7 @@ export default function ContactPage() {
 											placeholder="I need help with..."
 											required
 											rows={4}
+											defaultValue={state.data?.message}
 											aria-describedby={state.errors?.message ? "message-error" : undefined}
 										/>
 										{state.errors?.message && (
