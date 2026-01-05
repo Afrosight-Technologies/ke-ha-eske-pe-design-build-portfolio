@@ -63,7 +63,11 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 						{ label: "Year", value: project.year || "—", icon: Calendar },
 					].map((item) => (
 						<div key={item.label} className="flex items-start gap-3 md:gap-4">
-							<item.icon size={16} strokeWidth={1.5} className="text-secondary mt-0.5 md:mt-1 shrink-0 md:w-5 md:h-5" />
+							<item.icon
+								size={16}
+								strokeWidth={1.5}
+								className="text-secondary mt-0.5 md:mt-1 shrink-0 md:w-5 md:h-5"
+							/>
 							<div>
 								<h4 className="text-2xs md:text-xs tracking-widest uppercase text-secondary font-semibold mb-1 md:mb-2">
 									{item.label}
