@@ -47,18 +47,24 @@ export function Navbar() {
 			{/* Main Navigation Bar */}
 			<nav
 				className={cn(
-					"fixed w-full px-6 md:px-12 flex justify-between items-center z-50 transition-all duration-500 ease-in-out text-foreground",
+					"fixed w-full px-6 md:px-12 flex justify-between items-center z-50 transition-all duration-500 ease-in-out",
 					scrolled
 						? "py-4 bg-background/35 backdrop-blur-xl border-b border-foreground/5 shadow-sm"
-						: "py-6 md:py-8 bg-transparent",
+						: "py-6 md:py-8 bg-transparent"
 				)}
 			>
+				{/* Brand - stays dark (left side over white background) */}
 				<motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
 					<Brand />
 				</motion.div>
 
-				{/* Desktop Navigation */}
-				<div className="hidden md:flex items-center gap-10 text-xs tracking-[0.25em] uppercase font-bold">
+				{/* Desktop Navigation - white when unscrolled (right side over dark background) */}
+				<div
+					className={cn(
+						"hidden md:flex items-center gap-10 text-xs tracking-[0.25em] uppercase font-bold transition-colors duration-500",
+						scrolled ? "text-foreground" : "text-primary-foreground"
+					)}
+				>
 					{navItems.map((item) => (
 						<NavLink key={item.href} href={item.href}>
 							{item.label}
@@ -66,13 +72,28 @@ export function Navbar() {
 					))}
 
 					<Link href="/contact">
-						<Button variant="outline" size="sm">
+						<Button
+							variant="outline"
+							size="sm"
+							className={cn(
+								scrolled
+									? "border-foreground text-foreground hover:bg-foreground hover:text-background"
+									: "border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-accent"
+							)}
+						>
 							Consult
 						</Button>
 					</Link>
 
-					<div className="flex items-center gap-6 border-l border-foreground/10 pl-6 ml-2">
-						<LanguageToggle />
+					<div
+						className={cn(
+							"flex items-center gap-6 border-l pl-6 ml-2",
+							scrolled ? "border-foreground/10" : "border-primary-foreground/20"
+						)}
+					>
+						<LanguageToggle
+							className={scrolled ? "" : "text-primary-foreground"}
+						/>
 						<Link
 							href={`tel:${phone}`}
 							className="font-mono opacity-60 flex items-center gap-2 text-sm tracking-normal"
