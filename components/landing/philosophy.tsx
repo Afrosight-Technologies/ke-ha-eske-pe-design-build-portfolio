@@ -53,11 +53,10 @@ export function Philosophy() {
 
 							{/* Description */}
 							<p className="text-lg text-secondary leading-relaxed font-light mb-10">
-								The name 'Ke Ha Eske Pe' (
-								<span className="font-amharic">ከሀ እስከ ፐ</span>) signifies the
-								complete Amharic alphabet. It represents our core notion: bridging
-								the gap between design and construction to ensure your vision
-								remains uncompromised from the first letter to the last.
+								The name 'Ke Ha Eske Pe' (<span className="font-amharic">ከሀ እስከ ፐ</span>) signifies
+								the complete Amharic alphabet. It represents our core notion: bridging the gap
+								between design and construction to ensure your vision remains uncompromised from the
+								first letter to the last.
 							</p>
 
 							{/* Stats Grid */}
@@ -93,10 +92,9 @@ export function Philosophy() {
 									Bridging The Fragmentation
 								</h4>
 								<p className="text-secondary leading-relaxed font-light">
-									In traditional projects, design and construction are often handled
-									by separate entities. This fragmentation frequently leads to
-									miscommunication, budget overruns, and undesired outputs that
-									deviate from the original intent.
+									In traditional projects, design and construction are often handled by separate
+									entities. This fragmentation frequently leads to miscommunication, budget
+									overruns, and undesired outputs that deviate from the original intent.
 								</p>
 							</div>
 
@@ -105,10 +103,9 @@ export function Philosophy() {
 									Single-Point Accountability
 								</h4>
 								<p className="text-secondary leading-relaxed font-light">
-									We serve as your single contract point. By overseeing everything
-									from the initial design stage through heavy construction and final
-									furnishing, we eliminate friction and guarantee the quality of the
-									final result.
+									We serve as your single contract point. By overseeing everything from the initial
+									design stage through heavy construction and final furnishing, we eliminate
+									friction and guarantee the quality of the final result.
 								</p>
 							</div>
 						</motion.div>
@@ -130,10 +127,9 @@ export function Philosophy() {
 										</h4>
 									</div>
 									<p className="text-secondary leading-relaxed font-light">
-										Our primary mission is to ensure that every stroke on the
-										blueprint is translated with absolute fidelity onto the physical
-										site. We don't just design; we deliver the reality exactly as it
-										was envisioned.
+										Our primary mission is to ensure that every stroke on the blueprint is
+										translated with absolute fidelity onto the physical site. We don't just design;
+										we deliver the reality exactly as it was envisioned.
 									</p>
 								</div>
 
@@ -143,8 +139,7 @@ export function Philosophy() {
 								{/* Quote */}
 								<div className="flex-1 flex items-center justify-center">
 									<p className="text-xl md:text-2xl italic text-foreground font-light leading-relaxed">
-										Ensuring what is on the paper is perfectly delivered on the
-										ground.
+										Ensuring what is on the paper is perfectly delivered on the ground.
 									</p>
 								</div>
 							</div>
