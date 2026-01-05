@@ -4,7 +4,6 @@ import { Briefcase, Eye, Lightbulb, Ruler, ShieldCheck, Target } from "lucide-re
 import { motion } from "motion/react";
 import Image from "next/image";
 import { CTA } from "@/components/landing/cta";
-import { Philosophy } from "@/components/landing/philosophy";
 
 const architect = {
 	name: "Nebiat Sentayehu",
