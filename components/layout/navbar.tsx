@@ -39,7 +39,7 @@ export function Navbar() {
 	}, [isOpen]);
 
 	const navItems = [
-		{ label: "Work", href: "#work" },
+		{ label: "Work", href: "/#work" },
 		{ label: "About", href: "/about" },
 	];
 
