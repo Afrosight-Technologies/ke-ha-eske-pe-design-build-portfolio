@@ -3,7 +3,8 @@
 import { CheckCircle, Loader2, Mail, MapPin, Phone, Send } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
-import { useState } from "react";
+import { useActionState, useEffect, useState } from "react";
+import { sendContactEmail, type ContactFormState } from "@/app/actions";
 import { Button, Input, Textarea } from "@/components/ui";
 
 const contactItems = [
@@ -54,20 +55,24 @@ const contactItemVariant = {
 	},
 };
 
-export default function ContactPage() {
-	const [formState, setFormState] = useState({ name: "", email: "", message: "" });
-	const [isSubmitting, setIsSubmitting] = useState(false);
-	const [isSuccess, setIsSuccess] = useState(false);
+const initialState: ContactFormState = {
+	success: false,
+	message: "",
+};
 
-	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault();
-		setIsSubmitting(true);
-		// TODO: Replace with actual API call
-		setTimeout(() => {
-			setIsSubmitting(false);
-			setIsSuccess(true);
-			setFormState({ name: "", email: "", message: "" });
-		}, 1500);
+export default function ContactPage() {
+	const [state, formAction, isPending] = useActionState(sendContactEmail, initialState);
+	const [showSuccess, setShowSuccess] = useState(false);
+
+	// Show success message when form submission succeeds
+	useEffect(() => {
+		if (state.success) {
+			setShowSuccess(true);
+		}
+	}, [state.success]);
+
+	const handleReset = () => {
+		setShowSuccess(false);
 	};
 
 	return (
@@ -134,52 +139,84 @@ export default function ContactPage() {
 						className="relative"
 					>
 						<AnimatePresence mode="wait">
-							{!isSuccess ? (
+							{!showSuccess ? (
 								<motion.form
 									key="form"
-									onSubmit={handleSubmit}
+									action={formAction}
 									className="space-y-8 bg-muted p-8 md:p-12 border border-foreground/5"
 									initial={{ opacity: 0 }}
 									animate={{ opacity: 1 }}
 									exit={{ opacity: 0 }}
 								>
-									<Input
-										id="name"
-										label="Your Name"
-										placeholder="John Doe"
-										required
-										type="text"
-										value={formState.name}
-										onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-									/>
+									{/* Error message */}
+									{state.message && !state.success && (
+										<motion.div
+											initial={{ opacity: 0, y: -10 }}
+											animate={{ opacity: 1, y: 0 }}
+											className="p-4 bg-red-50 border border-red-200 text-red-800 text-sm"
+										>
+											{state.message}
+										</motion.div>
+									)}
 
-									<Input
-										id="email"
-										label="Email Address"
-										placeholder="john@example.com"
-										required
-										type="email"
-										value={formState.email}
-										onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-									/>
+									<div>
+										<Input
+											id="name"
+											name="name"
+											label="Your Name"
+											placeholder="John Doe"
+											required
+											type="text"
+											aria-describedby={state.errors?.name ? "name-error" : undefined}
+										/>
+										{state.errors?.name && (
+											<p id="name-error" className="mt-2 text-sm text-red-600">
+												{state.errors.name[0]}
+											</p>
+										)}
+									</div>
 
-									<Textarea
-										id="message"
-										label="Tell us about your vision"
-										placeholder="I need help with..."
-										required
-										rows={4}
-										value={formState.message}
-										onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-									/>
+									<div>
+										<Input
+											id="email"
+											name="email"
+											label="Email Address"
+											placeholder="john@example.com"
+											required
+											type="email"
+											aria-describedby={state.errors?.email ? "email-error" : undefined}
+										/>
+										{state.errors?.email && (
+											<p id="email-error" className="mt-2 text-sm text-red-600">
+												{state.errors.email[0]}
+											</p>
+										)}
+									</div>
+
+									<div>
+										<Textarea
+											id="message"
+											name="message"
+											label="Tell us about your vision"
+											placeholder="I need help with..."
+											required
+											rows={4}
+											aria-describedby={state.errors?.message ? "message-error" : undefined}
+										/>
+										{state.errors?.message && (
+											<p id="message-error" className="mt-2 text-sm text-red-600">
+												{state.errors.message[0]}
+											</p>
+										)}
+									</div>
 
 									<Button
 										type="submit"
 										variant="outline"
-										disabled={isSubmitting}
+										disabled={isPending}
 										className="w-full justify-center"
 									>
-										{isSubmitting ? (
+										{isPending ? (
 											<Loader2 className="w-5 h-5 animate-spin" />
 										) : (
 											<span className="flex items-center gap-3">
@@ -203,7 +240,7 @@ export default function ContactPage() {
 									</p>
 									<button
 										type="button"
-										onClick={() => setIsSuccess(false)}
+										onClick={handleReset}
 										className="text-label tracking-wide-lg uppercase font-bold underline underline-offset-8"
 									>
 										Send another message
