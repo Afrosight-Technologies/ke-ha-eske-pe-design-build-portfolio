@@ -123,7 +123,7 @@ export default function ContactPage() {
 
 									<Textarea
 										id="message"
-										label="Message"
+										label="Tell us about your vision"
 										placeholder="I need help with..."
 										required
 										rows={4}
