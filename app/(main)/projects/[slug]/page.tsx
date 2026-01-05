@@ -55,20 +55,20 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 				</div>
 
 				{/* Metadata Bar */}
-				<div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-12 border-y border-border mb-24">
+				<div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 py-8 md:py-12 border-y border-border mb-16 md:mb-24">
 					{[
 						{ label: "Client", value: project.clientName || "—", icon: User },
 						{ label: "Location", value: project.location || "—", icon: MapPin },
 						{ label: "Area", value: project.area ? `${project.area} m²` : "—", icon: Maximize2 },
 						{ label: "Year", value: project.year || "—", icon: Calendar },
 					].map((item) => (
-						<div key={item.label} className="flex items-start gap-4">
-							<item.icon size={20} strokeWidth={1.5} className="text-secondary mt-1 shrink-0" />
+						<div key={item.label} className="flex items-start gap-3 md:gap-4">
+							<item.icon size={16} strokeWidth={1.5} className="text-secondary mt-0.5 md:mt-1 shrink-0 md:w-5 md:h-5" />
 							<div>
-								<h4 className="text-xs tracking-widest uppercase text-secondary font-semibold mb-2">
+								<h4 className="text-2xs md:text-xs tracking-widest uppercase text-secondary font-semibold mb-1 md:mb-2">
 									{item.label}
 								</h4>
-								<p className="text-lg font-semibold tracking-tight">{item.value}</p>
+								<p className="text-base md:text-lg font-semibold tracking-tight">{item.value}</p>
 							</div>
 						</div>
 					))}
