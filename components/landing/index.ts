@@ -1,3 +1,4 @@
+export { AtmosphericDivider } from "./atmospheric-divider";
 export { CTA } from "./cta";
 export { Hero } from "./hero";
 export { Philosophy } from "./philosophy";

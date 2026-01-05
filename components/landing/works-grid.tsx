@@ -20,7 +20,7 @@ export function WorksGrid({ projects }: WorksGridProps) {
 		activeFilter === "all" ? projects : projects.filter((p) => p.category === activeFilter);
 
 	return (
-		<section id="works" className="py-16 md:py-24 px-6 md:px-12 bg-background overflow-hidden">
+		<section id="work" className="pt-12 md:pt-16 pb-8 px-6 md:px-12 bg-background overflow-hidden">
 			<div className="max-w-7xl mx-auto">
 				{/* Header */}
 				<motion.div
@@ -30,18 +30,18 @@ export function WorksGrid({ projects }: WorksGridProps) {
 					transition={{ duration: 0.8 }}
 					className="text-center mb-16"
 				>
-					<h2 className="text-3xl md:text-5xl font-bold tracking-[0.3em] mb-12 uppercase">
+					<h2 className="text-3xl md:text-5xl font-bold tracking-wide-lg mb-12 uppercase leading-relaxed">
 						OUR WORK
 					</h2>
 
 					{/* Category Filter */}
-					<div className="flex flex-wrap justify-center gap-4 md:gap-12">
+					<div className="flex flex-wrap justify-center gap-6 md:gap-10">
 						{categories.map((cat) => (
 							<button
 								key={cat.id}
 								type="button"
 								onClick={() => setActiveFilter(cat.id)}
-								className={`relative py-2 text-sm tracking-[0.2em] uppercase font-semibold transition-all duration-300 ${
+								className={`relative py-2 text-label md:text-label-md tracking-wide-sm uppercase font-bold transition-all duration-300 ${
 									activeFilter === cat.id
 										? "text-foreground"
 										: "text-secondary hover:text-foreground"
@@ -66,7 +66,7 @@ export function WorksGrid({ projects }: WorksGridProps) {
 					whileInView={{ opacity: 1 }}
 					viewport={{ once: true, margin: "0px 0px -50px 0px" }}
 					transition={{ duration: 0.5, ease: "easeOut" }}
-					className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2"
+					className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10"
 				>
 					{filteredProjects.length > 0 ? (
 						<AnimatePresence mode="popLayout">
@@ -87,7 +87,7 @@ export function WorksGrid({ projects }: WorksGridProps) {
 				</motion.div>
 
 				{/* Bottom Divider */}
-				<div className="mt-16 h-px w-24 bg-border mx-auto" />
+				<div className="mt-12 h-px w-24 bg-foreground/10 mx-auto" />
 			</div>
 		</section>
 	);

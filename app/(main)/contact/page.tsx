@@ -44,7 +44,14 @@ export default function ContactPage() {
 	};
 
 	return (
-		<section className="py-44 px-6 md:px-12 relative">
+		<section className="pt-32 md:pt-44 pb-20 px-6 md:px-12 relative">
+			{/* Background Decoration */}
+			<div className="absolute top-0 right-0 p-12 opacity-[0.02] pointer-events-none hidden lg:block">
+				<span className="text-[30vh] font-bold leading-none select-none tracking-tighter">
+					CONTACT
+				</span>
+			</div>
+
 			<div className="max-w-7xl mx-auto">
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
 					{/* Left: Info */}
@@ -53,10 +60,10 @@ export default function ContactPage() {
 						animate={{ opacity: 1, x: 0 }}
 						transition={{ delay: 0.2 }}
 					>
-						<p className="text-sm tracking-[0.2em] uppercase text-muted-foreground mb-6 font-semibold">
+						<p className="text-label tracking-wide-xl uppercase text-secondary mb-6 font-bold">
 							Get In Touch
 						</p>
-						<h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-12">
+						<h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-none mb-12">
 							Let&apos;s Build <span className="block">Together</span>
 						</h1>
 
@@ -68,14 +75,14 @@ export default function ContactPage() {
 									target={item.href.startsWith("http") ? "_blank" : "_self"}
 									className="flex items-start gap-6 group"
 								>
-									<div className="mt-1 text-muted-foreground group-hover:text-foreground transition-colors">
+									<div className="mt-1 text-secondary group-hover:text-foreground transition-colors">
 										<item.icon size={20} />
 									</div>
 									<div>
-										<p className="text-sm tracking-[0.2em] uppercase text-muted-foreground font-semibold mb-2">
+										<p className="text-label tracking-wide-sm uppercase text-secondary font-bold mb-2">
 											{item.label}
 										</p>
-										<p className="text-xl font-light leading-snug group-hover:underline decoration-border">
+										<p className="text-xl font-light leading-snug group-hover:underline decoration-foreground/10">
 											{item.value}
 										</p>
 									</div>
@@ -96,7 +103,7 @@ export default function ContactPage() {
 								<motion.form
 									key="form"
 									onSubmit={handleSubmit}
-									className="space-y-8 bg-muted p-8 md:p-12 border border-border"
+									className="space-y-8 bg-muted p-8 md:p-12 border border-foreground/5"
 									initial={{ opacity: 0 }}
 									animate={{ opacity: 1 }}
 									exit={{ opacity: 0 }}
@@ -123,7 +130,7 @@ export default function ContactPage() {
 
 									<Textarea
 										id="message"
-										label="Message"
+										label="Tell us about your vision"
 										placeholder="I need help with..."
 										required
 										rows={4}
@@ -138,7 +145,7 @@ export default function ContactPage() {
 										className="w-full justify-center"
 									>
 										{isSubmitting ? (
-											<Loader2 className="w-5 h-5 animate-spin text-primary-foreground" />
+											<Loader2 className="w-5 h-5 animate-spin" />
 										) : (
 											<span className="flex items-center gap-3">
 												Send Message
@@ -152,17 +159,17 @@ export default function ContactPage() {
 									key="success"
 									initial={{ opacity: 0, scale: 0.9 }}
 									animate={{ opacity: 1, scale: 1 }}
-									className="flex flex-col items-center justify-center text-center p-12 bg-muted border border-border h-full min-h-[500px]"
+									className="flex flex-col items-center justify-center text-center p-12 bg-muted border border-foreground/5 h-full min-h-[500px]"
 								>
-									<CheckCircle size={32} className="text-foreground mb-8" />
+									<CheckCircle size={64} className="text-foreground mb-8" />
 									<h4 className="text-2xl font-bold mb-4">Message Sent Successfully!</h4>
-									<p className="text-muted-foreground mb-6">
+									<p className="text-secondary mb-6">
 										We&apos;ll get back to you as soon as possible.
 									</p>
 									<button
 										type="button"
 										onClick={() => setIsSuccess(false)}
-										className="text-sm tracking-[0.2em] uppercase font-bold underline underline-offset-8"
+										className="text-label tracking-wide-lg uppercase font-bold underline underline-offset-8"
 									>
 										Send another message
 									</button>

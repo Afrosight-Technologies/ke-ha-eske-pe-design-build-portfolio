@@ -39,8 +39,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 		// Size variants
 		const sizeStyles: Record<ButtonSize, string> = {
 			sm: "px-5 py-2.5 text-[10px] tracking-widest",
-			default: "px-8 py-4 text-xs tracking-[0.2em]",
-			lg: "px-12 py-5 text-sm tracking-[0.3em]",
+			default: "px-8 py-4 text-xs tracking-wide-sm",
+			lg: "px-12 py-5 text-sm tracking-wide-lg",
 		};
 
 		// Variant styles
@@ -56,8 +56,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 		// Link variant doesn't need padding from size, just font size
 		const linkSizeStyles: Record<ButtonSize, string> = {
 			sm: "text-[10px] tracking-widest",
-			default: "text-xs tracking-[0.2em]",
-			lg: "text-sm tracking-[0.3em]",
+			default: "text-xs tracking-wide-sm",
+			lg: "text-sm tracking-wide-lg",
 		};
 
 		// Combined class names using cn utility

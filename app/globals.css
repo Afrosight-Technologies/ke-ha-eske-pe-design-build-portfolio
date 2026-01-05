@@ -20,75 +20,127 @@
 	--color-border: #e5e5e5;
 
 	/* === TYPOGRAPHY === */
-	--font-montserrat: var(--font-montserrat), "Montserrat", sans-serif;
+	--font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	--font-amharic: var(--font-amharic), "Noto Sans Ethiopic", sans-serif;
+
+	/* === LETTER SPACING === */
+	--tracking-wide-sm: 0.2em;
+	--tracking-wide-md: 0.25em;
+	--tracking-wide-lg: 0.3em;
+	--tracking-wide-xl: 0.5em;
+
+	/* === CUSTOM TEXT SIZES === */
+	/* Extra extra small - 9px (category labels) */
+	--text-2xs: 0.5625rem;
+	--text-2xs--line-height: 1rem;
+
+	/* Label - 10px (section labels, nav items) */
+	--text-label: 0.625rem;
+	--text-label--line-height: 1rem;
+
+	/* Label medium - 11px */
+	--text-label-md: 0.6875rem;
+	--text-label-md--line-height: 1.25rem;
 }
 
 /* ===== GRID BACKGROUND UTILITIES ===== */
 
-/* Base grid utility - works on light backgrounds (24px) */
 @utility bg-grid {
 	background-image:
-		linear-gradient(to right, #80808012 1px, transparent 1px),
-		linear-gradient(to bottom, #80808012 1px, transparent 1px);
-	background-size: 24px 24px;
+		linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+		linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+	background-size: 40px 40px;
 }
 
 /* Small grid (20px) */
 @utility bg-grid-sm {
 	background-image:
-		linear-gradient(to right, #80808012 1px, transparent 1px),
-		linear-gradient(to bottom, #80808012 1px, transparent 1px);
+		linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+		linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
 	background-size: 20px 20px;
 }
 
 /* Large grid (40px) */
 @utility bg-grid-lg {
 	background-image:
-		linear-gradient(to right, #80808012 1px, transparent 1px),
-		linear-gradient(to bottom, #80808012 1px, transparent 1px);
+		linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+		linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
 	background-size: 40px 40px;
 }
 
 /* Grid for dark backgrounds (white lines) */
 @utility bg-grid-light {
 	background-image:
-		linear-gradient(to right, #ffffff12 1px, transparent 1px),
-		linear-gradient(to bottom, #ffffff12 1px, transparent 1px);
-	background-size: 24px 24px;
+		linear-gradient(to right, rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+		linear-gradient(to bottom, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+	background-size: 20px 20px;
 }
 
 /* Small grid for dark backgrounds */
 @utility bg-grid-light-sm {
 	background-image:
-		linear-gradient(to right, #ffffff12 1px, transparent 1px),
-		linear-gradient(to bottom, #ffffff12 1px, transparent 1px);
+		linear-gradient(to right, rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+		linear-gradient(to bottom, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
 	background-size: 20px 20px;
 }
 
 /* Large grid for dark backgrounds */
 @utility bg-grid-light-lg {
 	background-image:
-		linear-gradient(to right, #ffffff12 1px, transparent 1px),
-		linear-gradient(to bottom, #ffffff12 1px, transparent 1px);
+		linear-gradient(to right, rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+		linear-gradient(to bottom, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
 	background-size: 40px 40px;
 }
 
-/* Base Styles */
+/* ===== GRADIENT UTILITIES ===== */
+
+/* Radial gradient for hero depth effect */
+@utility bg-radial-dark {
+	background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+/* ===== BASE STYLES ===== */
 html {
 	scroll-behavior: smooth;
+	scroll-padding-top: 80px;
+	overflow-x: hidden;
 }
 
 body {
-	font-family: var(--font-montserrat), "Montserrat", sans-serif;
+	font-family: var(--font-sans);
 	background-color: var(--color-background);
 	color: var(--color-foreground);
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	overflow-x: hidden;
+	width: 100%;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
 }
 
 /* Selection */
 ::selection {
 	background-color: var(--color-primary);
 	color: var(--color-primary-foreground);
+}
+
+/* ===== FONT UTILITIES ===== */
+.font-amharic {
+	font-family: var(--font-amharic);
+	line-height: 1.6;
 }
