@@ -1,73 +1,27 @@
 "use client";
 
-import { Menu, Phone, X } from "lucide-react";
+import { Globe, Menu, Phone, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
-import { type ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Brand } from "@/components/brand";
-import { LanguageToggle } from "@/components/language-toggle";
-import { Button } from "@/components/ui";
 import { cn } from "@/lib/utils";
-
-// ============================================
-// NavLink Component
-// ============================================
-interface NavLinkProps {
-	href: string;
-	children: ReactNode;
-	className?: string;
-	onClick?: () => void;
-}
-
-function NavLink({ href, children, className, onClick }: NavLinkProps) {
-	const baseStyles =
-		"relative overflow-hidden py-1 font-semibold uppercase text-sm tracking-[0.2em]";
-
-	const isHashLink = href.startsWith("#");
-
-	const MotionLink = isHashLink ? motion.a : motion.create(Link);
-
-	return (
-		<MotionLink
-			href={href}
-			className={cn(baseStyles, className)}
-			onClick={onClick}
-			initial="idle"
-			whileHover="hover"
-		>
-			<span className="relative block overflow-hidden h-4">
-				{/* Original text - slides up on hover */}
-				<motion.span
-					className="block"
-					variants={{
-						idle: { y: 0 },
-						hover: { y: "-100%" },
-					}}
-					transition={{ duration: 0.3 }}
-				>
-					{children}
-				</motion.span>
-				{/* Duplicate text - slides up from below on hover */}
-				<motion.span
-					className="block opacity-60"
-					variants={{
-						idle: { y: 0 },
-						hover: { y: "-100%" },
-					}}
-					transition={{ duration: 0.3 }}
-				>
-					{children}
-				</motion.span>
-			</span>
-		</MotionLink>
-	);
-}
+import { LanguageToggle } from "../language-toggle";
+import { Button } from "../ui";
 
 // ============================================
 // Navbar Component
 // ============================================
 export function Navbar() {
 	const [isOpen, setIsOpen] = useState(false);
+	const [scrolled, setScrolled] = useState(false);
+
+	// Scroll detection
+	useEffect(() => {
+		const handleScroll = () => setScrolled(window.scrollY > 50);
+		window.addEventListener("scroll", handleScroll, { passive: true });
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
 
 	// Lock scroll when mobile menu is open
 	useEffect(() => {
@@ -82,7 +36,7 @@ export function Navbar() {
 	}, [isOpen]);
 
 	const navItems = [
-		{ label: "Works", href: "/#works" },
+		{ label: "Work", href: "#work" },
 		{ label: "About", href: "/about" },
 	];
 
@@ -91,11 +45,23 @@ export function Navbar() {
 	return (
 		<>
 			{/* Main Navigation Bar */}
-			<nav className="fixed w-full px-6 md:px-12 py-4 flex justify-between items-center z-50 text-foreground bg-background/80 backdrop-blur-md">
-				<Brand />
+			<nav
+				className={cn(
+					"fixed w-full px-6 md:px-12 flex justify-between items-center z-50 transition-all duration-500 ease-in-out text-foreground",
+					scrolled
+						? "py-4 bg-background/35 backdrop-blur-xl border-b border-foreground/5 shadow-sm"
+						: "py-6 md:py-8 bg-transparent"
+				)}
+			>
+				<motion.div
+					initial={{ opacity: 0, x: -20 }}
+					animate={{ opacity: 1, x: 0 }}
+				>
+					<Brand />
+				</motion.div>
 
 				{/* Desktop Navigation */}
-				<div className="hidden md:flex items-center gap-10">
+				<div className="hidden md:flex items-center gap-10 text-xs tracking-[0.25em] uppercase font-bold">
 					{navItems.map((item) => (
 						<NavLink key={item.href} href={item.href}>
 							{item.label}
@@ -103,18 +69,18 @@ export function Navbar() {
 					))}
 
 					<Link href="/contact">
-						<Button variant="outline" size="default">
+						<Button variant="outline" size="sm">
 							Consult
 						</Button>
 					</Link>
 
-					<div className="flex items-center gap-1 border-l border-primary/10 pl-6 ml-2">
-						<LanguageToggle className="text-muted-foreground" />
+					<div className="flex items-center gap-6 border-l border-foreground/10 pl-6 ml-2">
+						<LanguageToggle />
 						<Link
 							href={`tel:${phone}`}
-							className="flex items-center gap-2 text-xs text-muted-foreground"
+							className="font-mono opacity-60 flex items-center gap-2 text-sm tracking-normal"
 						>
-							<Phone size={16} />
+							<Phone size={12} />
 							{phone}
 						</Link>
 					</div>
@@ -124,15 +90,49 @@ export function Navbar() {
 				<button
 					type="button"
 					onClick={() => setIsOpen(!isOpen)}
-					className="md:hidden p-2 z-50 relative"
+					className="md:hidden p-2 z-50 relative text-foreground"
 					aria-label="Toggle Menu"
 				>
 					{isOpen ? <X size={24} /> : <Menu size={24} />}
 				</button>
 			</nav>
 
-			<MobileMenu isOpen={isOpen} onClose={() => setIsOpen(false)} navItems={navItems} />
+			<MobileMenu
+				isOpen={isOpen}
+				onClose={() => setIsOpen(false)}
+				navItems={navItems}
+				phone={phone}
+			/>
 		</>
+	);
+}
+
+// ============================================
+// NavLink Component
+// ============================================
+interface NavLinkProps {
+	href: string;
+	children: React.ReactNode;
+	onClick?: () => void;
+}
+
+function NavLink({ href, children, onClick }: NavLinkProps) {
+	const isHashLink = href.startsWith("#");
+	const Component = isHashLink ? "a" : Link;
+
+	return (
+		<Component
+			href={href}
+			onClick={onClick}
+			className="relative group overflow-hidden py-1"
+		>
+			<span className="inline-block transition-transform duration-300 group-hover:-translate-y-full">
+				{children}
+			</span>
+			<span className="absolute left-0 top-full inline-block transition-transform duration-300 group-hover:-translate-y-full opacity-60">
+				{children}
+			</span>
+		</Component>
 	);
 }
 
@@ -173,11 +173,10 @@ interface MobileMenuProps {
 	isOpen: boolean;
 	onClose: () => void;
 	navItems: { label: string; href: string }[];
+	phone: string;
 }
 
-function MobileMenu({ isOpen, onClose, navItems }: MobileMenuProps) {
-	const phone = "+251922451812";
-
+function MobileMenu({ isOpen, onClose, navItems, phone }: MobileMenuProps) {
 	return (
 		<AnimatePresence>
 			{isOpen && (
@@ -186,7 +185,7 @@ function MobileMenu({ isOpen, onClose, navItems }: MobileMenuProps) {
 					initial="closed"
 					animate="open"
 					exit="closed"
-					className="fixed inset-0 bg-background z-40 flex flex-col justify-center items-center"
+					className="fixed inset-0 bg-background z-30 flex flex-col justify-center items-center text-foreground"
 				>
 					<div className="flex flex-col gap-8 text-center">
 						{navItems.map((item) => (
@@ -194,7 +193,7 @@ function MobileMenu({ isOpen, onClose, navItems }: MobileMenuProps) {
 								<a
 									href={item.href}
 									onClick={onClose}
-									className="text-4xl font-bold tracking-tighter hover:opacity-60 transition-opacity"
+									className="text-4xl font-bold tracking-tighter hover:text-secondary transition-colors"
 								>
 									{item.label}
 								</a>
@@ -202,25 +201,28 @@ function MobileMenu({ isOpen, onClose, navItems }: MobileMenuProps) {
 						))}
 
 						<motion.div variants={itemVariants}>
-							<Link href="/contact">
-								<Button variant="outline" size="default">
+							<Link
+								href="/contact"
+								onClick={onClose}
+								className="text-4xl font-bold tracking-tighter hover:text-secondary transition-colors"
+							>
+								<Button
+									variant="outline"
+									onClick={onClose}
+								>
 									Consult
 								</Button>
 							</Link>
 						</motion.div>
 
-						{/* Separator */}
-						<motion.div variants={itemVariants} className="w-12 h-px bg-border mx-auto" />
+						<motion.div variants={itemVariants} className="mt-8 flex flex-col gap-4">
+							<LanguageToggle />
 
-						<motion.div variants={itemVariants} className="flex flex-col items-center gap-4">
-							<div className="flex items-center gap-4">
-								<LanguageToggle className="text-muted-foreground" />
-							</div>
 							<Link
 								href={`tel:${phone}`}
-								className="flex items-center gap-2 text-sm font-mono tracking-widest text-muted-foreground"
+								className="font-mono text-sm tracking-widest opacity-60 flex items-center gap-2"
 							>
-								<Phone size={16} />
+								<Phone size={12} />
 								{phone}
 							</Link>
 						</motion.div>

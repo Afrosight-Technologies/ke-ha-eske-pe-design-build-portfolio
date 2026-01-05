@@ -22,6 +22,19 @@
 	/* === TYPOGRAPHY === */
 	--font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	--font-amharic: var(--font-amharic), "Noto Sans Ethiopic", sans-serif;
+
+	/* === CUSTOM TEXT SIZES === */
+	/* Extra extra small - 9px (category labels) */
+	--text-2xs: 0.5625rem;
+	--text-2xs--line-height: 1rem;
+
+	/* Label - 10px (section labels, nav items) */
+	--text-label: 0.625rem;
+	--text-label--line-height: 1rem;
+
+	/* Label medium - 11px */
+	--text-label-md: 0.6875rem;
+	--text-label-md--line-height: 1.25rem;
 }
 
 /* ===== GRID BACKGROUND UTILITIES ===== */
