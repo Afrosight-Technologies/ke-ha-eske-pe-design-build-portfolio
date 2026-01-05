@@ -39,7 +39,7 @@ export function Philosophy() {
 							transition={{ duration: 0.8 }}
 						>
 							{/* Section Label */}
-							<h2 className="text-label tracking-wide-lg uppercase text-secondary mb-6 font-bold">
+							<h2 className="text-label tracking-wide-xl uppercase text-secondary mb-6 font-bold">
 								OUR PHILOSOPHY
 							</h2>
 

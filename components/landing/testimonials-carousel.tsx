@@ -30,7 +30,7 @@ export function TestimonialsCarousel({ testimonials }: TestimonialsCarouselProps
 				transition={{ duration: 0.8 }}
 				className="text-center mb-16 md:mb-20 px-6 md:px-12"
 			>
-				<h2 className="text-3xl md:text-5xl font-bold tracking-[0.3em] uppercase">
+				<h2 className="text-3xl md:text-5xl font-bold tracking-wide-lg uppercase">
 					WHAT THEY SAY ABOUT US
 				</h2>
 				<div className="w-12 h-[2px] bg-foreground mx-auto mt-8" />

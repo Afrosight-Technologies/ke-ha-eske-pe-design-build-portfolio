@@ -26,7 +26,8 @@
 	/* === LETTER SPACING === */
 	--tracking-wide-sm: 0.2em;
 	--tracking-wide-md: 0.25em;
-	--tracking-wide-lg: 0.5em;
+	--tracking-wide-lg: 0.3em;
+	--tracking-wide-xl: 0.5em;
 
 	/* === CUSTOM TEXT SIZES === */
 	/* Extra extra small - 9px (category labels) */

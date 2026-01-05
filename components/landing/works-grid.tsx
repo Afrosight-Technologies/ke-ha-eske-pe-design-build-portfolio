@@ -30,7 +30,7 @@ export function WorksGrid({ projects }: WorksGridProps) {
 					transition={{ duration: 0.8 }}
 					className="text-center mb-16"
 				>
-					<h2 className="text-3xl md:text-5xl font-bold tracking-[0.3em] mb-12 uppercase">
+					<h2 className="text-3xl md:text-5xl font-bold tracking-wide-lg mb-12 uppercase">
 						OUR WORK
 					</h2>
 
