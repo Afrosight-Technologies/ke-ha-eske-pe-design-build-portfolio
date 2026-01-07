@@ -232,7 +232,7 @@ function MobileMenu({ isOpen, onClose, navItems, phone }: MobileMenuProps) {
 							</Link>
 						</motion.div>
 
-						<motion.div variants={itemVariants} className="mt-8 flex flex-col gap-4">
+						<motion.div variants={itemVariants} className="flex flex-col gap-4">
 							<LanguageToggle />
 
 							<Link
