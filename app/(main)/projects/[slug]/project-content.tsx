@@ -29,7 +29,6 @@ const staggerContainer = {
 	},
 };
 
-
 const metaItemVariant = {
 	hidden: { opacity: 0, y: 15 },
 	visible: {
