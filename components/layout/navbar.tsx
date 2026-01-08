@@ -157,28 +157,33 @@ function NavLink({ href, children, onClick }: NavLinkProps) {
 const menuVariants = {
 	closed: {
 		opacity: 0,
-		y: "-100%",
 		transition: {
 			duration: 0.5,
-			ease: [0.22, 1, 0.36, 1] as const,
 			when: "afterChildren" as const,
 		},
 	},
 	open: {
 		opacity: 1,
-		y: 0,
 		transition: {
 			duration: 0.5,
-			ease: [0.22, 1, 0.36, 1] as const,
 			when: "beforeChildren" as const,
-			staggerChildren: 0.1,
+			staggerChildren: 0.06,
+			delayChildren: 0.1,
 		},
 	},
 };
 
 const itemVariants = {
-	closed: { opacity: 0, y: 20 },
-	open: { opacity: 1, y: 0 },
+	closed: {
+		opacity: 0,
+		y: 12,
+		transition: { duration: 0.5 },
+	},
+	open: {
+		opacity: 1,
+		y: 0,
+		transition: { duration: 0.5 },
+	},
 };
 
 // ============================================
@@ -227,7 +232,7 @@ function MobileMenu({ isOpen, onClose, navItems, phone }: MobileMenuProps) {
 							</Link>
 						</motion.div>
 
-						<motion.div variants={itemVariants} className="mt-8 flex flex-col gap-4">
+						<motion.div variants={itemVariants} className="flex flex-col gap-4">
 							<LanguageToggle />
 
 							<Link
