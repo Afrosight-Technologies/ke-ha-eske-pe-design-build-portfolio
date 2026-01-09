@@ -91,7 +91,7 @@ const staggerContainer = {
 
 export default function AboutPage() {
 	return (
-		<main className="bg-background pt-32 pb-0">
+		<main className="bg-background pt-32 pb-20 md:pb-24">
 			<div className="max-w-7xl mx-auto px-6 md:px-12">
 				{/* Hero Header */}
 				<motion.div
@@ -277,7 +277,7 @@ export default function AboutPage() {
 				whileInView="visible"
 				viewport={{ once: true, margin: "-50px" }}
 				variants={staggerContainer}
-				className="bg-background my-24"
+				className="bg-background my-20 md:my-24"
 			>
 				<div className="max-w-7xl mx-auto px-6 md:px-12">
 					<motion.div variants={fadeUp} className="text-center mb-24">

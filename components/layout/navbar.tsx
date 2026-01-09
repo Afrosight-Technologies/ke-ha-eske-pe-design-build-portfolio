@@ -56,8 +56,11 @@ export function Navbar() {
 						: "py-6 md:py-8 bg-transparent border-transparent",
 				)}
 			>
-				{/* Brand - stays dark (left side over white background) */}
-				<motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
+				<motion.div
+					initial={{ opacity: 0, x: -12 }}
+					animate={{ opacity: 1, x: 0 }}
+					transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+				>
 					<Brand />
 				</motion.div>
 
@@ -158,16 +161,16 @@ const menuVariants = {
 	closed: {
 		opacity: 0,
 		transition: {
-			duration: 0.5,
+			duration: 0.3,
 			when: "afterChildren" as const,
 		},
 	},
 	open: {
 		opacity: 1,
 		transition: {
-			duration: 0.5,
+			duration: 0.3,
 			when: "beforeChildren" as const,
-			staggerChildren: 0.06,
+			staggerChildren: 0.15,
 			delayChildren: 0.1,
 		},
 	},
@@ -177,12 +180,12 @@ const itemVariants = {
 	closed: {
 		opacity: 0,
 		y: 12,
-		transition: { duration: 0.5 },
+		transition: { duration: 0.3 },
 	},
 	open: {
 		opacity: 1,
 		y: 0,
-		transition: { duration: 0.5 },
+		transition: { duration: 0.3 },
 	},
 };
 

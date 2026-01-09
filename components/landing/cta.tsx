@@ -6,7 +6,7 @@ import { Button } from "@/components/ui";
 
 export function CTA() {
 	return (
-		<section className="pt-12 md:pt-16 pb-24 md:pb-32 px-6 bg-background flex flex-col items-center text-center">
+		<section className="py-10 md:py-24 px-6 bg-background flex flex-col items-center text-center">
 			<motion.div
 				initial={{ opacity: 0, y: 30 }}
 				whileInView={{ opacity: 1, y: 0 }}

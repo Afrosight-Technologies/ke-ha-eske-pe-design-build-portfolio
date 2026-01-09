@@ -21,7 +21,7 @@ export function TestimonialsCarousel({ testimonials }: TestimonialsCarouselProps
 	}, []);
 
 	return (
-		<section className="py-24 md:py-32 max-w-7xl mx-auto overflow-hidden">
+		<section className="py-10 md:py-24 max-w-7xl mx-auto overflow-hidden">
 			{/* Header */}
 			<motion.div
 				initial={{ opacity: 0, y: 20 }}

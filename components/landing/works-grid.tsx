@@ -20,7 +20,7 @@ export function WorksGrid({ projects }: WorksGridProps) {
 		activeFilter === "all" ? projects : projects.filter((p) => p.category === activeFilter);
 
 	return (
-		<section id="work" className="pt-12 md:pt-16 pb-8 px-6 md:px-12 bg-background overflow-hidden">
+		<section id="work" className="py-20 md:py-24 px-6 md:px-12 bg-background overflow-hidden">
 			<div className="max-w-7xl mx-auto">
 				{/* Header */}
 				<motion.div

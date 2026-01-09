@@ -76,7 +76,7 @@ export default function ContactPage() {
 	};
 
 	return (
-		<section className="pt-32 md:pt-44 pb-20 px-6 md:px-12 relative">
+		<section className="pt-32 md:pt-44 pb-20 md:pb-24 px-6 md:px-12 relative">
 			{/* Background Decoration */}
 			<div className="absolute top-0 right-0 p-12 opacity-[0.02] pointer-events-none hidden lg:block">
 				<span className="text-[30vh] font-bold leading-none select-none tracking-tighter">
