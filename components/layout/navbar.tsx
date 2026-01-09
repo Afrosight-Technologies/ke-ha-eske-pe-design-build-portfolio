@@ -170,7 +170,7 @@ const menuVariants = {
 		transition: {
 			duration: 0.3,
 			when: "beforeChildren" as const,
-			staggerChildren: 0.15,
+			staggerChildren: 0.1,
 			delayChildren: 0.1,
 		},
 	},
