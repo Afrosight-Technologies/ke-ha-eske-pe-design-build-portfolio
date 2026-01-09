@@ -24,10 +24,7 @@ export function Brand({ variant = "full", className, logoSize = 52 }: BrandProps
 					alt="Ke Ha Eske Pe Logo"
 					width={logoSize}
 					height={logoSize}
-					className={cn(
-						"object-cover mix-blend-multiply ",
-						!logoSize && "w-12 h-12 md:w-16 md:h-16",
-					)}
+					className="object-cover mix-blend-multiply "
 				/>
 			</div>
 
