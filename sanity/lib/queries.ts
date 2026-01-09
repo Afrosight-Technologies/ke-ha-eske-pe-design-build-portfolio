@@ -68,3 +68,45 @@ export const PROJECT_QUERY = defineQuery(`
     }
   }
 `);
+
+// Fetch initial page of projects for a category (first page)
+export const PROJECTS_INITIAL_QUERY = defineQuery(`
+  *[_type == "project" 
+    && defined(slug.current)
+    && category == $category
+  ] | order(_createdAt desc) [0...6] {
+    _id,
+    _createdAt,
+    title,
+    slug,
+    category,
+    location,
+    "featuredImage": featuredImage.asset->url
+  }
+`);
+
+// Fetch next page of projects using cursor-based pagination (more performant)
+// Uses _createdAt as primary sort with _id as tiebreaker for duplicates
+export const PROJECTS_CURSOR_QUERY = defineQuery(`
+  *[_type == "project" 
+    && defined(slug.current)
+    && category == $category
+    && (
+      _createdAt < $lastCreatedAt
+      || (_createdAt == $lastCreatedAt && _id > $lastId)
+    )
+  ] | order(_createdAt desc) [0...6] {
+    _id,
+    _createdAt,
+    title,
+    slug,
+    category,
+    location,
+    "featuredImage": featuredImage.asset->url
+  }
+`);
+
+// Count total projects in a category
+export const PROJECTS_COUNT_QUERY = defineQuery(`
+  count(*[_type == "project" && defined(slug.current) && category == $category])
+`);

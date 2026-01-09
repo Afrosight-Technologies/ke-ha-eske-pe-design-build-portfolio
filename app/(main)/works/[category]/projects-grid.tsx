@@ -1,5 +1,5 @@
 import { sanityFetch } from "@/sanity/lib/live";
-import { PROJECTS_QUERY } from "@/sanity/lib/queries";
+import { PROJECTS_COUNT_QUERY, PROJECTS_INITIAL_QUERY } from "@/sanity/lib/queries";
 import { ProjectsGridClient } from "./projects-grid-client";
 
 interface ProjectsGridProps {
@@ -7,10 +7,23 @@ interface ProjectsGridProps {
 }
 
 export async function ProjectsGrid({ category }: ProjectsGridProps) {
-	const { data: projects } = await sanityFetch({
-		query: PROJECTS_QUERY,
-		params: { category, isFeatured: null },
-	});
+	// Fetch initial batch and total count in parallel
+	const [projectsResult, countResult] = await Promise.all([
+		sanityFetch({
+			query: PROJECTS_INITIAL_QUERY,
+			params: { category },
+		}),
+		sanityFetch({
+			query: PROJECTS_COUNT_QUERY,
+			params: { category },
+		}),
+	]);
 
-	return <ProjectsGridClient projects={projects} />;
+	return (
+		<ProjectsGridClient
+			initialProjects={projectsResult.data}
+			totalCount={countResult.data}
+			category={category}
+		/>
+	);
 }

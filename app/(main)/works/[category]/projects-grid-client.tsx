@@ -3,15 +3,15 @@
 import { FolderOpen } from "lucide-react";
 import { motion } from "motion/react";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useTransition } from "react";
+import { loadMoreProjects } from "@/app/actions";
 import { Button } from "@/components/ui";
-import type { PROJECTS_QUERYResult } from "@/sanity/types";
+import type { PROJECTS_INITIAL_QUERYResult } from "@/sanity/types";
 
-const INITIAL_PROJECTS_COUNT = 6;
-const LOAD_MORE_COUNT = 6;
+type Project = PROJECTS_INITIAL_QUERYResult[number];
 
 interface ProjectCardProps {
-	project: PROJECTS_QUERYResult[number];
+	project: Project;
 }
 
 function ProjectCard({ project }: ProjectCardProps) {
@@ -55,17 +55,35 @@ function ProjectCard({ project }: ProjectCardProps) {
 }
 
 interface ProjectsGridClientProps {
-	projects: PROJECTS_QUERYResult;
+	initialProjects: PROJECTS_INITIAL_QUERYResult;
+	totalCount: number;
+	category: string;
 }
 
-export function ProjectsGridClient({ projects }: ProjectsGridClientProps) {
-	const [visibleCount, setVisibleCount] = useState(INITIAL_PROJECTS_COUNT);
+export function ProjectsGridClient({
+	initialProjects,
+	totalCount,
+	category,
+}: ProjectsGridClientProps) {
+	const [projects, setProjects] = useState<Project[]>(initialProjects);
+	const [isPending, startTransition] = useTransition();
 
-	const visibleProjects = projects.slice(0, visibleCount);
-	const hasMore = visibleCount < projects.length;
+	const hasMore = projects.length < totalCount;
+
+	// Get cursor from last project for pagination
+	const lastProject = projects[projects.length - 1];
 
 	const handleLoadMore = () => {
-		setVisibleCount((prev) => Math.min(prev + LOAD_MORE_COUNT, projects.length));
+		if (!lastProject) return;
+
+		startTransition(async () => {
+			const newProjects = await loadMoreProjects(
+				category,
+				lastProject._createdAt,
+				lastProject._id,
+			);
+			setProjects((prev) => [...prev, ...newProjects]);
+		});
 	};
 
 	if (projects.length === 0) {
@@ -90,7 +108,7 @@ export function ProjectsGridClient({ projects }: ProjectsGridClientProps) {
 				transition={{ duration: 0.5, ease: "easeOut" }}
 				className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6"
 			>
-				{visibleProjects.map((project) => (
+				{projects.map((project) => (
 					<ProjectCard key={project._id} project={project} />
 				))}
 			</motion.div>
@@ -103,8 +121,8 @@ export function ProjectsGridClient({ projects }: ProjectsGridClientProps) {
 					transition={{ duration: 0.5, delay: 0.2 }}
 					className="flex justify-center mt-12"
 				>
-					<Button variant="outline" onClick={handleLoadMore}>
-						Load More
+					<Button variant="outline" onClick={handleLoadMore} disabled={isPending}>
+						{isPending ? "Loading..." : "Load More"}
 					</Button>
 				</motion.div>
 			)}

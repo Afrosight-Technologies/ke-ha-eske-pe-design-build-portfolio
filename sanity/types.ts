@@ -229,6 +229,31 @@ export type PROJECT_QUERYResult = {
   gallery: null;
   specifications: null;
 } | null;
+// Variable: PROJECTS_INITIAL_QUERY
+// Query: *[_type == "project"     && defined(slug.current)    && category == $category  ] | order(_createdAt desc) [0...6] {    _id,    _createdAt,    title,    slug,    category,    location,    "featuredImage": featuredImage.asset->url  }
+export type PROJECTS_INITIAL_QUERYResult = Array<{
+  _id: string;
+  _createdAt: string;
+  title: string;
+  slug: Slug;
+  category: "construction" | "exterior" | "finishing" | "interior" | "renovation";
+  location: string | null;
+  featuredImage: string | null;
+}>;
+// Variable: PROJECTS_CURSOR_QUERY
+// Query: *[_type == "project"     && defined(slug.current)    && category == $category    && (      _createdAt < $lastCreatedAt      || (_createdAt == $lastCreatedAt && _id > $lastId)    )  ] | order(_createdAt desc) [0...6] {    _id,    _createdAt,    title,    slug,    category,    location,    "featuredImage": featuredImage.asset->url  }
+export type PROJECTS_CURSOR_QUERYResult = Array<{
+  _id: string;
+  _createdAt: string;
+  title: string;
+  slug: Slug;
+  category: "construction" | "exterior" | "finishing" | "interior" | "renovation";
+  location: string | null;
+  featuredImage: string | null;
+}>;
+// Variable: PROJECTS_COUNT_QUERY
+// Query: count(*[_type == "project" && defined(slug.current) && category == $category])
+export type PROJECTS_COUNT_QUERYResult = number;
 
 // Query TypeMap
 import "@sanity/client";
@@ -238,5 +263,8 @@ declare module "@sanity/client" {
     "\n  *[_type == \"project\" \n    && defined(slug.current)\n    && select(\n      defined($category) && $category != \"\" => category == $category,\n      true\n    )\n    && select(\n      defined($isFeatured) => isFeatured == $isFeatured,\n      true\n    )\n  ] | order(_createdAt desc) {\n    _id,\n    title,\n    slug,\n    category,\n    location,\n    isFeatured,\n    \"featuredImage\": featuredImage.asset->url\n  }\n": PROJECTS_QUERYResult;
     "\n  *[_type == \"project\" && defined(slug.current) && isFeatured == true] | order(_createdAt desc) {\n    _id,\n    title,\n    slug,\n    category,\n    \"featuredImage\": featuredImage.asset->url\n  }\n": FEATURED_PROJECTS_QUERYResult;
     "\n  *[_type == \"project\" && slug.current == $slug][0] {\n    _id,\n    title,\n    slug,\n    category,\n    location,\n    area,\n    year,\n    clientName,\n    description,\n    \"featuredImage\": featuredImage.asset->url,\n    \"gallery\": gallery[].asset->url,\n    specifications[] {\n      label,\n      value\n    }\n  }\n": PROJECT_QUERYResult;
+    "\n  *[_type == \"project\" \n    && defined(slug.current)\n    && category == $category\n  ] | order(_createdAt desc) [0...6] {\n    _id,\n    _createdAt,\n    title,\n    slug,\n    category,\n    location,\n    \"featuredImage\": featuredImage.asset->url\n  }\n": PROJECTS_INITIAL_QUERYResult;
+    "\n  *[_type == \"project\" \n    && defined(slug.current)\n    && category == $category\n    && (\n      _createdAt < $lastCreatedAt\n      || (_createdAt == $lastCreatedAt && _id > $lastId)\n    )\n  ] | order(_createdAt desc) [0...6] {\n    _id,\n    _createdAt,\n    title,\n    slug,\n    category,\n    location,\n    \"featuredImage\": featuredImage.asset->url\n  }\n": PROJECTS_CURSOR_QUERYResult;
+    "\n  count(*[_type == \"project\" && defined(slug.current) && category == $category])\n": PROJECTS_COUNT_QUERYResult;
   }
 }
