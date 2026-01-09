@@ -31,6 +31,7 @@ export const PROJECTS_QUERY = defineQuery(`
     title,
     slug,
     category,
+    location,
     isFeatured,
     "featuredImage": featuredImage.asset->url
   }

@@ -73,7 +73,6 @@ export function CategoryCard({
 					>
 						<span className="relative">
 							View More
-							{/* Animated underline */}
 							<span className="absolute left-0 -bottom-1 w-0 h-px bg-current transition-all duration-300 group-hover/link:w-full group-focus/link:w-full" />
 						</span>
 						<ArrowRight size={14} />

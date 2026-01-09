@@ -35,6 +35,12 @@ export const projectType = defineType({
 			validation: (rule) => rule.required(),
 		}),
 		defineField({
+			name: "location",
+			title: "Location",
+			description: "Project location (e.g., Addis Ababa, Bole)",
+			type: "string",
+		  }),
+		defineField({
 			name: "isFeatured",
 			title: "Featured Project",
 			description:

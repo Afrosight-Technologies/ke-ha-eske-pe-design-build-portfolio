@@ -61,6 +61,11 @@ function ProjectCard({ project }: ProjectCardProps) {
 					<h3 className="text-xl md:text-2xl font-bold tracking-tight leading-tight max-w-[90%]">
 						{project.title}
 					</h3>
+					{project.location && (
+						<p className="text-sm text-primary-foreground/70 font-light mt-2">
+							{project.location}
+						</p>
+					)}
 				</div>
 			</div>
 		</motion.div>

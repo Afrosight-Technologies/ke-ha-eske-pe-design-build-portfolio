@@ -300,6 +300,13 @@
         },
         "optional": false
       },
+      "location": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
       "isFeatured": {
         "type": "objectAttribute",
         "value": {

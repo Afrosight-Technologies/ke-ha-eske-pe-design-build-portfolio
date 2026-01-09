@@ -62,6 +62,7 @@ export type Project = {
   title: string;
   slug: Slug;
   category: "exterior" | "interior" | "construction" | "finishing" | "renovation";
+  location?: string;
   isFeatured?: boolean;
   featuredImage: {
     asset?: {
@@ -193,12 +194,13 @@ export type TESTIMONIALS_QUERYResult = Array<{
   avatar: string | null;
 }>;
 // Variable: PROJECTS_QUERY
-// Query: *[_type == "project"     && defined(slug.current)    && select(      defined($category) && $category != "" => category == $category,      true    )    && select(      defined($isFeatured) => isFeatured == $isFeatured,      true    )  ] | order(_createdAt desc) {    _id,    title,    slug,    category,    isFeatured,    "featuredImage": featuredImage.asset->url  }
+// Query: *[_type == "project"     && defined(slug.current)    && select(      defined($category) && $category != "" => category == $category,      true    )    && select(      defined($isFeatured) => isFeatured == $isFeatured,      true    )  ] | order(_createdAt desc) {    _id,    title,    slug,    category,    location,    isFeatured,    "featuredImage": featuredImage.asset->url  }
 export type PROJECTS_QUERYResult = Array<{
   _id: string;
   title: string;
   slug: Slug;
   category: "construction" | "exterior" | "finishing" | "interior" | "renovation";
+  location: string | null;
   isFeatured: boolean | null;
   featuredImage: string | null;
 }>;
@@ -218,7 +220,7 @@ export type PROJECT_QUERYResult = {
   title: string;
   slug: Slug;
   category: "construction" | "exterior" | "finishing" | "interior" | "renovation";
-  location: null;
+  location: string | null;
   area: null;
   year: null;
   clientName: null;
@@ -233,7 +235,7 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "\n  *[_type == \"testimonial\"] | order(_createdAt desc) {\n    _id,\n    name,\n    role,\n    company,\n    quote,\n    \"avatar\": avatar.asset->url\n  }\n": TESTIMONIALS_QUERYResult;
-    "\n  *[_type == \"project\" \n    && defined(slug.current)\n    && select(\n      defined($category) && $category != \"\" => category == $category,\n      true\n    )\n    && select(\n      defined($isFeatured) => isFeatured == $isFeatured,\n      true\n    )\n  ] | order(_createdAt desc) {\n    _id,\n    title,\n    slug,\n    category,\n    isFeatured,\n    \"featuredImage\": featuredImage.asset->url\n  }\n": PROJECTS_QUERYResult;
+    "\n  *[_type == \"project\" \n    && defined(slug.current)\n    && select(\n      defined($category) && $category != \"\" => category == $category,\n      true\n    )\n    && select(\n      defined($isFeatured) => isFeatured == $isFeatured,\n      true\n    )\n  ] | order(_createdAt desc) {\n    _id,\n    title,\n    slug,\n    category,\n    location,\n    isFeatured,\n    \"featuredImage\": featuredImage.asset->url\n  }\n": PROJECTS_QUERYResult;
     "\n  *[_type == \"project\" && defined(slug.current) && isFeatured == true] | order(_createdAt desc) {\n    _id,\n    title,\n    slug,\n    category,\n    \"featuredImage\": featuredImage.asset->url\n  }\n": FEATURED_PROJECTS_QUERYResult;
     "\n  *[_type == \"project\" && slug.current == $slug][0] {\n    _id,\n    title,\n    slug,\n    category,\n    location,\n    area,\n    year,\n    clientName,\n    description,\n    \"featuredImage\": featuredImage.asset->url,\n    \"gallery\": gallery[].asset->url,\n    specifications[] {\n      label,\n      value\n    }\n  }\n": PROJECT_QUERYResult;
   }

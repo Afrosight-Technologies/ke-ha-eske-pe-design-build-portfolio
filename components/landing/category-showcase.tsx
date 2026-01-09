@@ -20,7 +20,6 @@ export function CategoryShowcase({ featuredProjects, projectCounts }: CategorySh
 	return (
 		<section id="work" className="py-20 md:py-24 px-6 md:px-12 bg-background overflow-hidden">
 			<div className="max-w-7xl mx-auto">
-				{/* Header - consistent with other sections */}
 				<motion.div
 					initial={{ opacity: 0, y: 20 }}
 					whileInView={{ opacity: 1, y: 0 }}
@@ -34,7 +33,6 @@ export function CategoryShowcase({ featuredProjects, projectCounts }: CategorySh
 					<div className="w-12 h-[2px] bg-foreground mx-auto" />
 				</motion.div>
 
-				{/* Equal Grid Layout */}
 				<motion.div
 					initial={{ opacity: 0 }}
 					whileInView={{ opacity: 1 }}
@@ -59,7 +57,6 @@ export function CategoryShowcase({ featuredProjects, projectCounts }: CategorySh
 					))}
 				</motion.div>
 
-				{/* Bottom Divider - consistent with other sections */}
 				<div className="mt-12 h-px w-24 bg-foreground/10 mx-auto" />
 			</div>
 		</section>

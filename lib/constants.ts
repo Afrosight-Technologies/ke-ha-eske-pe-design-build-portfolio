@@ -2,12 +2,12 @@
 export const PROJECT_CATEGORIES = [
 	{
 		id: "exterior",
-		label: "Exterior Design",
+		label: "Exterior Designs",
 		description: "Crafting stunning facades that define architectural identity.",
 	},
 	{
 		id: "interior",
-		label: "Interior Design",
+		label: "Interior Designs",
 		description: "Atmospheric spaces blending functionality with high-end aesthetics.",
 	},
 	{
