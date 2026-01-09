@@ -300,6 +300,13 @@
         },
         "optional": false
       },
+      "isFeatured": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "boolean"
+        },
+        "optional": true
+      },
       "featuredImage": {
         "type": "objectAttribute",
         "value": {

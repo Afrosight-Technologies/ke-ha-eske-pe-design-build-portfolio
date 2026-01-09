@@ -1,7 +1,9 @@
 export { AtmosphericDivider } from "./atmospheric-divider";
+export { CategoryCard } from "./category-card";
+export { CategoryShowcase } from "./category-showcase";
+export { CategoryShowcaseSkeleton } from "./category-showcase-skeleton";
 export { CTA } from "./cta";
 export { Hero } from "./hero";
 export { Philosophy } from "./philosophy";
 export { Testimonials } from "./testimonials";
 export { Works } from "./works";
-export { WorksSkeleton } from "./works-skeleton";
