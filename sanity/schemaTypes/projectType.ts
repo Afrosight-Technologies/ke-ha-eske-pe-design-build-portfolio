@@ -35,6 +35,37 @@ export const projectType = defineType({
 			validation: (rule) => rule.required(),
 		}),
 		defineField({
+			name: "isFeatured",
+			title: "Featured Project",
+			description:
+				"Mark as representative image for this category on homepage (only one per category allowed)",
+			type: "boolean",
+			initialValue: false,
+			validation: (rule) =>
+				rule.custom(async (isFeatured, context) => {
+					// Only validate when setting to true
+					if (!isFeatured) return true;
+
+					const { document, getClient } = context;
+					const client = getClient({ apiVersion: "2024-01-01" });
+
+					// Check if another featured project exists in this category
+					const existingFeatured = await client.fetch<{ title: string } | null>(
+						`*[_type == "project" && category == $category && isFeatured == true && _id != $id && !(_id in path("drafts.**"))][0]{ title }`,
+						{
+							category: document?.category,
+							id: document?._id?.replace("drafts.", ""),
+						},
+					);
+
+					if (existingFeatured) {
+						return `"${existingFeatured.title}" is already featured for this category. Please unmark it first.`;
+					}
+
+					return true;
+				}),
+		}),
+		defineField({
 			name: "featuredImage",
 			title: "Featured Image",
 			type: "image",

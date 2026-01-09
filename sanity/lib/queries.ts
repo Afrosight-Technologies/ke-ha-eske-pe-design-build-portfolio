@@ -12,9 +12,33 @@ export const TESTIMONIALS_QUERY = defineQuery(`
   }
 `);
 
-// Fetch all projects for the Works grid
+// Fetch projects with optional category and isFeatured filters
+// Usage: sanityFetch({ query: PROJECTS_QUERY, params: { category: "exterior", isFeatured: true } })
+// Pass null for params to get all projects
 export const PROJECTS_QUERY = defineQuery(`
-  *[_type == "project" && defined(slug.current)] | order(_createdAt desc) {
+  *[_type == "project" 
+    && defined(slug.current)
+    && select(
+      defined($category) && $category != "" => category == $category,
+      true
+    )
+    && select(
+      defined($isFeatured) => isFeatured == $isFeatured,
+      true
+    )
+  ] | order(_createdAt desc) {
+    _id,
+    title,
+    slug,
+    category,
+    isFeatured,
+    "featuredImage": featuredImage.asset->url
+  }
+`);
+
+// Fetch featured projects only (one per category for homepage showcase)
+export const FEATURED_PROJECTS_QUERY = defineQuery(`
+  *[_type == "project" && defined(slug.current) && isFeatured == true] | order(_createdAt desc) {
     _id,
     title,
     slug,
