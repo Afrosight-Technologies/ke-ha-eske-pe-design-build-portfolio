@@ -68,9 +68,13 @@ export function CategoryCard({
 
 					<Link
 						href={`/works/${category.id}`}
-						className="inline-flex items-center gap-3 text-2xs tracking-wide-lg uppercase font-bold transition-all duration-300 hover:gap-4 focus:outline-none focus:gap-4"
+						className="group/link inline-flex items-center gap-3 text-2xs tracking-wide-lg uppercase font-bold transition-all duration-300 hover:gap-4 focus:outline-none focus:gap-4"
 					>
-						<span>View More</span>
+						<span className="relative">
+							View More
+							{/* Animated underline */}
+							<span className="absolute left-0 -bottom-1 w-0 h-px bg-current transition-all duration-300 group-hover/link:w-full group-focus/link:w-full" />
+						</span>
 						<ArrowRight size={14} />
 					</Link>
 				</div>
