@@ -77,11 +77,7 @@ export function ProjectsGridClient({
 		if (!lastProject) return;
 
 		startTransition(async () => {
-			const newProjects = await loadMoreProjects(
-				category,
-				lastProject._createdAt,
-				lastProject._id,
-			);
+			const newProjects = await loadMoreProjects(category, lastProject._createdAt, lastProject._id);
 			setProjects((prev) => [...prev, ...newProjects]);
 		});
 	};
