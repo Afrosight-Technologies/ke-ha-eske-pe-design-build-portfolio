@@ -1,8 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { FolderOpen } from "lucide-react";
 import { motion } from "motion/react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useState, useTransition } from "react";
 import { loadMoreProjects } from "@/app/actions";
@@ -10,13 +10,12 @@ import { Button } from "@/components/ui";
 import type { PROJECTS_INITIAL_QUERYResult } from "@/sanity/types";
 
 // Dynamic import with SSR disabled to prevent hydration mismatch
-const Masonry = dynamic(
-	() => import("react-responsive-masonry").then((mod) => mod.default),
-	{ ssr: false }
-);
+const Masonry = dynamic(() => import("react-responsive-masonry").then((mod) => mod.default), {
+	ssr: false,
+});
 const ResponsiveMasonry = dynamic(
 	() => import("react-responsive-masonry").then((mod) => mod.ResponsiveMasonry),
-	{ ssr: false }
+	{ ssr: false },
 );
 
 type Project = PROJECTS_INITIAL_QUERYResult[number];
