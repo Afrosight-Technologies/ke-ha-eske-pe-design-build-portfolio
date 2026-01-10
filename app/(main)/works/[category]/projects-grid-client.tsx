@@ -4,6 +4,7 @@ import { FolderOpen } from "lucide-react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import { useState, useTransition } from "react";
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { loadMoreProjects } from "@/app/actions";
 import { Button } from "@/components/ui";
 import type { PROJECTS_INITIAL_QUERYResult } from "@/sanity/types";
@@ -22,7 +23,7 @@ function ProjectCard({ project }: ProjectCardProps) {
 			viewport={{ once: true, margin: "0px 0px -50px 0px" }}
 			transition={{ duration: 0.5, ease: "easeOut" }}
 			tabIndex={0}
-			className="group relative overflow-hidden bg-muted focus:outline-none break-inside-avoid"
+			className="group relative overflow-hidden bg-muted focus:outline-none"
 		>
 			{/* Image - natural height for masonry effect */}
 			{project.featuredImage && (
@@ -32,7 +33,8 @@ function ProjectCard({ project }: ProjectCardProps) {
 					width={800}
 					height={600}
 					sizes="(max-width: 768px) 100vw, 33vw"
-					className="h-auto w-full object-cover transition-all duration-700 ease-out grayscale group-hover:grayscale-0 group-focus:grayscale-0 group-hover:scale-105 group-focus:scale-105 group-hover:brightness-105 group-focus:brightness-105"
+					style={{ width: "100%", height: "auto", display: "block" }}
+					className="object-cover transition-all duration-700 ease-out grayscale group-hover:grayscale-0 group-focus:grayscale-0 group-hover:scale-105 group-focus:scale-105 group-hover:brightness-105 group-focus:brightness-105"
 				/>
 			)}
 
@@ -102,11 +104,14 @@ export function ProjectsGridClient({
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
 				transition={{ duration: 0.5, ease: "easeOut" }}
-				className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6"
 			>
-				{projects.map((project) => (
-					<ProjectCard key={project._id} project={project} />
-				))}
+				<ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 600: 2, 768: 3, 1024: 4 }} gutterBreakPoints={{ 350: "12px", 600: "16px", 768: "24px", 1024: "32px" }}>
+					<Masonry>
+						{projects.map((project) => (
+							<ProjectCard key={project._id} project={project} />
+						))}
+					</Masonry>
+				</ResponsiveMasonry>
 			</motion.div>
 
 			{/* Load More Button */}

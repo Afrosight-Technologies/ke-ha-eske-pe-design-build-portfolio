@@ -44,7 +44,7 @@ export function CategoryCard({
 				/>
 			)}
 
-			<div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent transition-all duration-700 opacity-80 group-hover:opacity-60 group-focus-within:opacity-60" />
+			<div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent transition-all duration-700 opacity-80 group-hover:opacity-40 group-focus-within:opacity-40" />
 
 			<div className="absolute inset-0 bg-grid-light opacity-[0.08] pointer-events-none" />
 
