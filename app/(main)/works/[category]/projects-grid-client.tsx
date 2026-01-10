@@ -1,30 +1,25 @@
 "use client";
 
-import { FolderOpen } from "lucide-react";
+import { FolderOpen, Maximize2 } from "lucide-react";
 import { motion } from "motion/react";
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useState, useTransition } from "react";
+import Lightbox from "yet-another-react-lightbox";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import "yet-another-react-lightbox/styles.css";
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { loadMoreProjects } from "@/app/actions";
 import { Button } from "@/components/ui";
 import type { PROJECTS_INITIAL_QUERYResult } from "@/sanity/types";
-
-// Dynamic import with SSR disabled to prevent hydration mismatch
-const Masonry = dynamic(() => import("react-responsive-masonry").then((mod) => mod.default), {
-	ssr: false,
-});
-const ResponsiveMasonry = dynamic(
-	() => import("react-responsive-masonry").then((mod) => mod.ResponsiveMasonry),
-	{ ssr: false },
-);
 
 type Project = PROJECTS_INITIAL_QUERYResult[number];
 
 interface ProjectCardProps {
 	project: Project;
+	onExpand: () => void;
 }
 
-function ProjectCard({ project }: ProjectCardProps) {
+function ProjectCard({ project, onExpand }: ProjectCardProps) {
 	return (
 		<motion.div
 			initial={{ opacity: 0, y: 20 }}
@@ -46,8 +41,18 @@ function ProjectCard({ project }: ProjectCardProps) {
 				/>
 			)}
 
-			{/* Gradient Overlay - hidden by default, visible on hover/focus */}
-			<div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent transition-all duration-700 opacity-0 group-hover:opacity-100 group-focus:opacity-100" />
+			<div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/20 to-transparent transition-all duration-700 opacity-0 group-hover:opacity-100 group-focus:opacity-100" />
+
+			{/* Expand Button - Bottom Right */}
+			<Button
+				variant="ghost"
+				size="sm"
+				onClick={onExpand}
+				className="absolute bottom-4 right-4 p-2 bg-black/50 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 hover:bg-black/70 hover:scale-110 hover:opacity-100 z-20"
+				aria-label="View fullscreen"
+			>
+				<Maximize2 size={16} className="text-white" />
+			</Button>
 
 			{/* Content - hidden by default, appears on hover/focus */}
 			<div className="absolute inset-0 flex flex-col justify-end p-8 text-primary-foreground z-10 opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-500">
@@ -77,6 +82,7 @@ export function ProjectsGridClient({
 }: ProjectsGridClientProps) {
 	const [projects, setProjects] = useState<Project[]>(initialProjects);
 	const [isPending, startTransition] = useTransition();
+	const [expandedImage, setExpandedImage] = useState<{ src: string; alt: string } | null>(null);
 
 	const hasMore = projects.length < totalCount;
 
@@ -112,15 +118,38 @@ export function ProjectsGridClient({
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
 				transition={{ duration: 0.5, ease: "easeOut" }}
+				suppressHydrationWarning={true}
 			>
 				<ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 640: 2, 768: 3, 1024: 4 }}>
 					<Masonry>
 						{projects.map((project) => (
-							<ProjectCard key={project._id} project={project} />
+							<ProjectCard
+								key={project._id}
+								project={project}
+								onExpand={() =>
+									setExpandedImage({
+										src: project.featuredImage as string,
+										alt: project.title,
+									})
+								}
+							/>
 						))}
 					</Masonry>
 				</ResponsiveMasonry>
 			</motion.div>
+
+			{/* Lightbox */}
+			<Lightbox
+				open={expandedImage !== null}
+				close={() => setExpandedImage(null)}
+				slides={expandedImage ? [expandedImage] : []}
+				plugins={[Zoom]}
+				carousel={{ finite: true }}
+				render={{
+					buttonPrev: () => null,
+					buttonNext: () => null,
+				}}
+			/>
 
 			{/* Load More Button */}
 			{hasMore && (
