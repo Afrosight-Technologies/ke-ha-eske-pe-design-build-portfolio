@@ -5,5 +5,6 @@ export { CategoryShowcaseSkeleton } from "./category-showcase-skeleton";
 export { CTA } from "./cta";
 export { Hero } from "./hero";
 export { Philosophy } from "./philosophy";
+export { ProjectsGridSkeleton } from "./projects-grid-skeleton";
 export { Testimonials } from "./testimonials";
 export { Works } from "./works";
