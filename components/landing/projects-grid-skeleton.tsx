@@ -19,10 +19,7 @@ export function ProjectsGridSkeleton() {
 		<div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-3">
 			{SKELETON_ITEMS.map((item) => (
 				<div key={item.id} className="mb-3 break-inside-avoid-column block">
-					<div
-						className="bg-muted/50 animate-pulse w-full"
-						style={{ height: item.height }}
-					/>
+					<div className="bg-muted/50 animate-pulse w-full" style={{ height: item.height }} />
 				</div>
 			))}
 		</div>
