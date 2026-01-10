@@ -33,7 +33,6 @@ function ProjectCard({ project }: ProjectCardProps) {
 					width={800}
 					height={600}
 					sizes="(max-width: 768px) 100vw, 33vw"
-					style={{ width: "100%", height: "auto", display: "block" }}
 					className="object-cover transition-all duration-700 ease-out grayscale group-hover:grayscale-0 group-focus:grayscale-0 group-hover:scale-105 group-focus:scale-105 group-hover:brightness-105 group-focus:brightness-105"
 				/>
 			)}
