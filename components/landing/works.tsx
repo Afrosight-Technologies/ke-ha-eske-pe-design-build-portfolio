@@ -1,14 +1,10 @@
 import { PROJECT_CATEGORIES } from "@/lib/constants";
-import type { Language } from "@/sanity/lib/languages";
 import { sanityFetch } from "@/sanity/lib/live";
 import { FEATURED_PROJECTS_QUERY, PROJECTS_QUERY } from "@/sanity/lib/queries";
+import type { WithLanguage } from "@/types";
 import { CategoryShowcase } from "./category-showcase";
 
-interface WorksProps {
-	lang: Language;
-}
-
-export async function Works({ lang }: WorksProps) {
+export async function Works({ lang }: WithLanguage) {
 	// Fetch featured projects for showcase cards
 	const { data: featuredProjects } = await sanityFetch({
 		query: FEATURED_PROJECTS_QUERY,

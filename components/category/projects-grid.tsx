@@ -1,11 +1,10 @@
-import type { Language } from "@/sanity/lib/languages";
 import { sanityFetch } from "@/sanity/lib/live";
 import { PROJECTS_COUNT_QUERY, PROJECTS_INITIAL_QUERY } from "@/sanity/lib/queries";
+import type { WithLanguage } from "@/types";
 import { ProjectsGridClient } from "./projects-grid-client";
 
-interface ProjectsGridProps {
+interface ProjectsGridProps extends WithLanguage {
 	category: string;
-	lang: Language;
 }
 
 export async function ProjectsGrid({ category, lang }: ProjectsGridProps) {

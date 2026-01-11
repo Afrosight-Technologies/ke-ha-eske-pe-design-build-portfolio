@@ -1,13 +1,9 @@
-import type { Language } from "@/sanity/lib/languages";
 import { sanityFetch } from "@/sanity/lib/live";
 import { TESTIMONIALS_QUERY } from "@/sanity/lib/queries";
+import type { WithLanguage } from "@/types";
 import { TestimonialsCarousel } from "./testimonials-carousel";
 
-interface TestimonialsProps {
-	lang: Language;
-}
-
-export async function Testimonials({ lang }: TestimonialsProps) {
+export async function Testimonials({ lang }: WithLanguage) {
 	const { data: testimonials } = await sanityFetch({
 		query: TESTIMONIALS_QUERY,
 		params: { lang },
