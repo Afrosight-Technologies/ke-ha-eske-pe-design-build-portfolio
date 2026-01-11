@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import { Footer, Navbar } from "@/components/layout";
 import { LanguageProvider } from "@/lib/language-context";
-import { SanityLive } from "@/sanity/lib/live";
 import { type Language, languageIds } from "@/sanity/lib/languages";
+import { SanityLive } from "@/sanity/lib/live";
 
 interface LangLayoutProps {
 	children: React.ReactNode;

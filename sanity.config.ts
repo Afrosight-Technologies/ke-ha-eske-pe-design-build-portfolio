@@ -6,8 +6,8 @@
 
 import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
-import { internationalizedArray } from "sanity-plugin-internationalized-array";
 import { structureTool } from "sanity/structure";
+import { internationalizedArray } from "sanity-plugin-internationalized-array";
 
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
 import { apiVersion, dataset, projectId } from "./sanity/env";
