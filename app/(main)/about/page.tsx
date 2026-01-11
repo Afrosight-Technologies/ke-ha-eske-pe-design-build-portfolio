@@ -295,7 +295,9 @@ export default function AboutPage() {
 								// biome-ignore lint/a11y/noNoninteractiveTabindex: intentional for keyboard accessibility
 								tabIndex={0}
 								className="group cursor-pointer aspect-3/4 overflow-hidden grayscale hover:grayscale-0 focus:grayscale-0 transition-all duration-700 mb-8 bg-muted relative max-w-lg mx-auto focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-							>							<Image
+							>
+								{" "}
+								<Image
 									src={architect.image}
 									alt={architect.name}
 									fill
