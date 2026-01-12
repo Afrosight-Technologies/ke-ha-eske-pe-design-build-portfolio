@@ -18,9 +18,9 @@ import { defineQuery } from "next-sanity";
 export const TESTIMONIALS_QUERY = defineQuery(`
   *[_type == "testimonial"] | order(_createdAt desc) {
     _id,
-    name,
+    "name": coalesce(name[_key == $lang][0].value, name[_key == "en"][0].value, ""),
     "role": coalesce(role[_key == $lang][0].value, role[_key == "en"][0].value),
-    company,
+    "company": coalesce(company[_key == $lang][0].value, company[_key == "en"][0].value),
     "quote": coalesce(quote[_key == $lang][0].value, quote[_key == "en"][0].value, ""),
     "avatar": avatar.asset->url
   }

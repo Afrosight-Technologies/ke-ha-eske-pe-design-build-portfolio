@@ -1,5 +1,6 @@
 import { defineField, defineType } from "sanity";
 import { PROJECT_CATEGORIES } from "@/lib/constants";
+import type { InternationalizedArrayString } from "@/sanity/types";
 
 export const projectType = defineType({
 	name: "project",
@@ -82,8 +83,17 @@ export const projectType = defineType({
 	preview: {
 		select: {
 			title: "title",
-			subtitle: "category",
+			category: "category",
 			media: "featuredImage",
+		},
+		prepare({ title, category, media }) {
+			return {
+				title:
+					(title as InternationalizedArrayString)?.find((t) => t._key === "en")
+						?.value || "Untitled",
+				subtitle: category,
+				media,
+			};
 		},
 	},
 });

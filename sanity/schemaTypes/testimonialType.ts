@@ -1,4 +1,5 @@
 import { defineField, defineType } from "sanity";
+import type { InternationalizedArrayString } from "@/sanity/types";
 
 export const testimonialType = defineType({
 	name: "testimonial",
@@ -39,9 +40,20 @@ export const testimonialType = defineType({
 	],
 	preview: {
 		select: {
-			title: "name",
-			subtitle: "company",
+			name: "name",
+			company: "company",
 			media: "avatar",
+		},
+		prepare({ name, company, media }) {
+			return {
+				title:
+					(name as InternationalizedArrayString)?.find((n) => n._key === "en")
+						?.value || "Untitled",
+				subtitle: (company as InternationalizedArrayString)?.find(
+					(c) => c._key === "en",
+				)?.value,
+				media,
+			};
 		},
 	},
 });

@@ -19,9 +19,9 @@ export type Testimonial = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  name: string;
+  name: InternationalizedArrayString;
   role?: InternationalizedArrayString;
-  company?: string;
+  company?: InternationalizedArrayString;
   quote: InternationalizedArrayText;
   avatar?: {
     asset?: {
@@ -202,10 +202,10 @@ export type AllSanitySchemaTypes = Testimonial | SanityImageCrop | SanityImageHo
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: sanity/lib/queries.ts
 // Variable: TESTIMONIALS_QUERY
-// Query: *[_type == "testimonial"] | order(_createdAt desc) {    _id,    name,    "role": coalesce(role[_key == $lang][0].value, role[_key == "en"][0].value),    company,    "quote": coalesce(quote[_key == $lang][0].value, quote[_key == "en"][0].value, ""),    "avatar": avatar.asset->url  }
+// Query: *[_type == "testimonial"] | order(_createdAt desc) {    _id,    "name": coalesce(name[_key == $lang][0].value, name[_key == "en"][0].value, ""),    "role": coalesce(role[_key == $lang][0].value, role[_key == "en"][0].value),    "company": coalesce(company[_key == $lang][0].value, company[_key == "en"][0].value),    "quote": coalesce(quote[_key == $lang][0].value, quote[_key == "en"][0].value, ""),    "avatar": avatar.asset->url  }
 export type TESTIMONIALS_QUERYResult = Array<{
   _id: string;
-  name: string;
+  name: string | "";
   role: string | null;
   company: string | null;
   quote: string | "";
@@ -300,7 +300,7 @@ export type PROJECTS_COUNT_QUERYResult = number;
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "\n  *[_type == \"testimonial\"] | order(_createdAt desc) {\n    _id,\n    name,\n    \"role\": coalesce(role[_key == $lang][0].value, role[_key == \"en\"][0].value),\n    company,\n    \"quote\": coalesce(quote[_key == $lang][0].value, quote[_key == \"en\"][0].value, \"\"),\n    \"avatar\": avatar.asset->url\n  }\n": TESTIMONIALS_QUERYResult;
+    "\n  *[_type == \"testimonial\"] | order(_createdAt desc) {\n    _id,\n    \"name\": coalesce(name[_key == $lang][0].value, name[_key == \"en\"][0].value, \"\"),\n    \"role\": coalesce(role[_key == $lang][0].value, role[_key == \"en\"][0].value),\n    \"company\": coalesce(company[_key == $lang][0].value, company[_key == \"en\"][0].value),\n    \"quote\": coalesce(quote[_key == $lang][0].value, quote[_key == \"en\"][0].value, \"\"),\n    \"avatar\": avatar.asset->url\n  }\n": TESTIMONIALS_QUERYResult;
     "\n  *[_type == \"project\" \n    && defined(slug.current)\n    && select(\n      defined($category) && $category != \"\" => category == $category,\n      true\n    )\n    && select(\n      defined($isFeatured) => isFeatured == $isFeatured,\n      true\n    )\n  ] | order(_createdAt desc) {\n    _id,\n    \"title\": coalesce(title[_key == $lang][0].value, title[_key == \"en\"][0].value, \"Untitled\"),\n    slug,\n    category,\n    \"location\": coalesce(location[_key == $lang][0].value, location[_key == \"en\"][0].value),\n    isFeatured,\n    \"featuredImage\": featuredImage.asset->{\n      url,\n      \"width\": metadata.dimensions.width,\n      \"height\": metadata.dimensions.height,\n      \"lqip\": metadata.lqip\n    }\n  }\n": PROJECTS_QUERYResult;
     "\n  *[_type == \"project\" && defined(slug.current) && isFeatured == true] | order(_createdAt desc) {\n    _id,\n    \"title\": coalesce(title[_key == $lang][0].value, title[_key == \"en\"][0].value, \"Untitled\"),\n    slug,\n    category,\n    \"featuredImage\": featuredImage.asset->{\n      url,\n      \"width\": metadata.dimensions.width,\n      \"height\": metadata.dimensions.height,\n      \"lqip\": metadata.lqip\n    }\n  }\n": FEATURED_PROJECTS_QUERYResult;
     "\n  *[_type == \"project\" && slug.current == $slug][0] {\n    _id,\n    \"title\": coalesce(title[_key == $lang][0].value, title[_key == \"en\"][0].value, \"Untitled\"),\n    slug,\n    category,\n    \"location\": coalesce(location[_key == $lang][0].value, location[_key == \"en\"][0].value),\n    area,\n    year,\n    clientName,\n    description,\n    \"featuredImage\": featuredImage.asset->{\n      url,\n      \"width\": metadata.dimensions.width,\n      \"height\": metadata.dimensions.height,\n      \"lqip\": metadata.lqip\n    }\n  }\n": PROJECT_QUERYResult;
